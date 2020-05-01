@@ -15,7 +15,7 @@
 				display: none;
 			}
 		</style>
-		<script src="youtube.js"></script>
+		<!-- <script src="youtube.js"></script> -->
 	</head>
 
 	<body>
@@ -298,10 +298,8 @@ this.</a>
 				</p>
 			</div>
 			<div class="options" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="1">I <span
-																						  class="italic">cannot</span> understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I can understand some of this
-					reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="0">I <span class="italic">cannot</span> understand this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I can understand some of this reading.</a><br />
 				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
 			</div>
 		</div>
@@ -433,7 +431,7 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
 			<div class="options" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I <span
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I <span
 																										class="italic">cannot</span> understand the video.</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I can understand
 					some of this video.</a><br />
@@ -539,9 +537,9 @@ allowfullscreen></iframe> -->
 						</div>
 					</div>
 					<div class="flex" data-lvl="5">
-						<div id="ENGL101X" class="course">
-							<h4>ENGL101X</h4>
-							<p>Reading, Composition & Academic Literacy (ELAC Emphasis)</p>
+						<div id="PLA" class="course">
+							<h4>Placement Assistant</h4>
+							<p>English Reading/Writing Assessment</p>
 						</div>
 					</div>
 				</div>
@@ -679,6 +677,8 @@ href="mailto:mesaelac@sdccd.edu">mesaelac@sdccd.edu</a></p>
 		}
 	}
 </script>
+<script src="config.js"></script>
+<script src="sheet.js"></script>
 <script src="FormGrunt.js"></script>
 <script src="app.js"></script>
 </body>

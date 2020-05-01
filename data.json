@@ -110,6 +110,11 @@
             "coreq": "ELAC33",
             "lvl": 3
         },
+        "PLA": {
+            "title": "Placement Assistant",
+            "desc": "The Placement Assistant will identify courses that students can enroll in using prior academic history. Students will report cumulative, unweighted high school GPA and their completed English and math courses.  Based on the information reported, students will receive an English placement milestone. ",
+            "label": "Placement Assistant"
+        },
         "ENGL101X": {
             "title": "Reading, Composition & Academic Literacy (ELAC Emphasis)",
             "desc": "In this class, we work with other ELAC students and native speakers. We write narratives, expository, and research papers. We share our knowledge and experiences in a safe space. We explore our writing, making connections to the stories we read. We get the support we need as a multilingual writers and speakers.",

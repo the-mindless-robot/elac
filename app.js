@@ -54,8 +54,43 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
      "ENGL101X"
  ];
 
+function buildLogicRules(sheetData) {
+    // console.log('sheetData', sheetData);
+    const logic = {};
+    for(let row of sheetData.data) {
+        const readingKey = "R" + row.reading.trim();
+        const listeningKey ="L" + row.listening.trim();
+        const level = formatValue(row.level);
+        const readingCourse = formatValue(row.course1);
+        const listeningCourse = formatValue(row.course2);
+        //check if reading key exists
+        if(logic.hasOwnProperty(readingKey)) {
+            // add listening key with value
+            logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
+        } else {
+            // add reading key
+            logic[readingKey] = {};
+            // add listening key with value
+            logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
+        }
+    }
+    console.log('logic', logic);
+    return logic;
+}
 
+function formatValue(value) {
+    let formattedValue = removeSpaces(value).toUpperCase();
+    return formattedValue;
+}
 
+function removeSpaces(string) {
+    return string.replace(/\s/g, '');
+}
+
+//load and parse elac logic google sheet in the background
+const elacLogic = new GoogleSheet(config.sheet);
+let logicRules = null;
+elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  /*
 
@@ -134,7 +169,7 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  var SELECTED_COURSE = "none";
 
  //wait time before youtube videos play
- const WAIT_TIME = 0.1;
+ const WAIT_TIME = 0.01;
 
  //set starting area
  setActiveArea(ROUTER.AREA);
@@ -329,7 +364,7 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  //all actions relating to the panel navigation system
 
  // type is only used when naviagting sub panels
- function displayPanel(index, type) {
+ function displayPanel(index, type=false) {
      console.log('type', type);
      if (index == ROUTER.PLACEMENT_PANEL && !type) {
          showLoader();
@@ -366,7 +401,7 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
          case 'listen':
              checkVisited(index);
              swapPanels(index, PANELS.LISTEN_PANELS);
-             startVideo(index);
+            //  startVideo(index);
              break;
          default:
              swapPanels(index, PANELS.MAIN);
@@ -699,68 +734,56 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  //evaluation of data for course recommendations
 
  function eval() {
-     if(PLACEMENT.student === "no") {
-         displayApply();
-     }
-
-     /*
-      * @TODO this will need to updated when they ever figure out the logic
-      * to give the proper recommendations and also save the milestones in caspio.
-      * Right now it does not calculate a milestone at all.
-      */
      // convert selected values to numbers
-     let reading = Number(PLACEMENT.reading);
+     const readingScore = Number(PLACEMENT.reading);
      // let writing = Number(PLACEMENT.writing);
-     let listening = Number(PLACEMENT.listen);
+     const listeningScore = Number(PLACEMENT.listen);
+
+     let results = null;
 
      // if all values present
-     if (reading && listening) {
-
-         //reading writing score
-         // let rw_score = Math.ceil((reading + writing) / 2);
-
-         //reading score
-         let rw_score = reading;
-
-         //listening speaking score
-         let ls_score = listening;
-
+     if (readingScore && listeningScore) {
          //save scores
-         console.log('R:', rw_score, 'L:', ls_score);
-         PLACEMENT.rw_score = rw_score;
-         PLACEMENT.ls_score = ls_score;
-
-         //get courses
-        // let recos = getCourseRecos(rw_score, ls_score);
-
-         //reading writing course reco
-         let rw_course = RW_COURSES[rw_score - 1];
-
-         //listening speaking course reco
-         let ls_course = LS_COURSES[ls_score - 1];
-
-         //save courses
-         console.log('RW Course:', rw_course, 'LS Course:', ls_course);
-         PLACEMENT.rw_course = rw_course;
-         PLACEMENT.ls_course = ls_course;
+         PLACEMENT.readingScore = readingScore;
+         PLACEMENT.listeningScore = listeningScore;
+         //save results
+         results = evaluateScores(readingScore, listeningScore);
+         PLACEMENT.readingCourse = results.readingCourse;
+         PLACEMENT.listeningCourse = results.listeningCourse;
+         PLACEMENT.level = results.level;
 
          console.log('PLACEMENT Eval', PLACEMENT);
-         setPlacementLevel(RW_COURSES[rw_score - 1], reading * 10, LS_COURSES[ls_score - 1], listening * 10);
-
      } else {
-         // defaults to ENGL101X
-         setPlacementLevel(RW_COURSES[4], "n/a", LS_COURSES[4], "n/a");
-
+         // need to display error to user
+         console.error('missing scores');
      }
+     displayRecos(results);
 
  }
 
- function getCoursesRecos(rw_score, ls_score) {
-     if(rw_score == ls_score) {
-         return {rw_course: RW_COURSES[rw_score - 1], ls_course: RW_COURSES[ls_score - 1]};
-     }
-    // let adjusted_scores = adjustScores(rw_score, ls_score);
+ function evaluateScores(readingScore, listeningScore) {
+
+     const values = logicRules["R"+readingScore]["L"+listeningScore];
+     console.log('values', values);
+     const readingCourse = typeof values.readingCourse == 'string' && values.readingCourse.length > 0 ? values.readingCourse : values.listeningCourse;
+     const listeningCourse = typeof values.listeningCourse == 'string' && values.listeningCourse.length > 0 ? values.listeningCourse : values.readingCourse;
+     console.log('r_course:', readingCourse, 'l_course', listeningCourse);
+     const level = typeof values.level == 'string' && values.level.length > 0 ? values.level : false;
+     return {level, readingCourse, listeningCourse};
  }
+
+ function displayRecos(results) {
+    const readingContainer = document.getElementById('reading');
+    const listeningContainer = document.getElementById('listening');
+
+    //highlight courses on screen (left side)
+    document.getElementById(results.readingCourse).classList.add('active');
+    document.getElementById(results.listeningCourse).classList.add('active');
+
+    //show details for each reco (right side)
+    setDetails(results.readingCourse, results.listeningCourse);
+ }
+
 
  function setPlacementLevel(rw_course, reading, ls_course, listening) {
      let reading_container = document.getElementById('reading');
@@ -784,7 +807,7 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
 
  function setDetails(reading, listening) {
      if (reading != listening) {
-         let courses = sort(reading, listening); // returns ordered array
+         const courses = sort(reading, listening); // returns ordered array
          for (const course of courses) {
              showCourseDetails(course, true);
          }
@@ -795,16 +818,8 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  }
 
  function sort(reading, listening) {
-     let rNum = getCourseNumber(reading);
-     let lNum = getCourseNumber(listening);
-
-     if (rNum == "101X") {
-         return [listening, reading];
-     }
-
-     if (lNum == "101X") {
-         return [reading, listening];
-     }
+     let rNum = reading == 'PLA' ? 1000 : getCourseNumber(reading);
+     let lNum = listening == 'PLA' ? 1000 : getCourseNumber(listening);
 
      if (Number(lNum) > Number(rNum)) {
          return [reading, listening];
@@ -818,25 +833,25 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
      return courseId.substring(4);
  }
 
- function displayApply() {
-     // build intro text
-     let intro = document.createElement('p');
-     let introMsg = `Hi <span id="userName">${PLACEMENT.first+','}</span><br/>It doesn't look like you are a student yet, don't forget to apply to SDCCD.`
-     intro.innerHTML = introMsg;
+//  function displayApply() {
+//      // build intro text
+//      let intro = document.createElement('p');
+//      let introMsg = `Hi <span id="userName">${PLACEMENT.first+','}</span><br/>It doesn't look like you are a student yet, don't forget to apply to SDCCD.`
+//      intro.innerHTML = introMsg;
 
-     //build button
-     let button = document.createElement('a');
-     button.classList.add('waves-effect', 'waves-light', 'btn-large');
-     button.href = "https://www.opencccapply.net/uPortal/f/u63l1s1000/normal/render.uP";
-     button.target = "_blank";
-     button.innerHTML = "Apply to SDCCD";
+//      //build button
+//      let button = document.createElement('a');
+//      button.classList.add('waves-effect', 'waves-light', 'btn-large');
+//      button.href = "https://www.opencccapply.net/uPortal/f/u63l1s1000/normal/render.uP";
+//      button.target = "_blank";
+//      button.innerHTML = "Apply to SDCCD";
 
-     //display
-     let applyContainer = document.getElementById('apply');
-     applyContainer.appendChild(intro);
-     applyContainer.appendChild(button);
-     applyContainer.style.display = 'block';
- }
+//      //display
+//      let applyContainer = document.getElementById('apply');
+//      applyContainer.appendChild(intro);
+//      applyContainer.appendChild(button);
+//      applyContainer.style.display = 'block';
+//  }
 
  /*
 
@@ -1158,27 +1173,6 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
          textContainer.innerHTML = "";
      });
  }
-
- // edit help message values here
- const helpMessages = (() => {
-     return {
-         reading_lvl: {
-             1: "I know nothing.",
-             2: "I know somethings.",
-             3: "I know a lot of things.",
-             4: "I know everything.",
-             5: "They call me <b>yoda</b>."
-         },
-         listen_lvl: {
-             1: "I know nothing.",
-             2: "I know somethings.",
-             3: "I know a lot of things.",
-             4: "I know everything.",
-             5: "The force is strong with this one."
-         }
-     }
- })();
-
 
  /*
                                                                              iiii
