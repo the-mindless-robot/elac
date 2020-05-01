@@ -773,15 +773,17 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function displayRecos(results) {
-    const readingContainer = document.getElementById('reading');
-    const listeningContainer = document.getElementById('listening');
-
     //highlight courses on screen (left side)
     document.getElementById(results.readingCourse).classList.add('active');
     document.getElementById(results.listeningCourse).classList.add('active');
 
     //show details for each reco (right side)
     setDetails(results.readingCourse, results.listeningCourse);
+
+    //testing purposes
+    const readingContainer = document.getElementById('reading');
+    const listeningContainer = document.getElementById('listening');
+
  }
 
 
