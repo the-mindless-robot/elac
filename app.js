@@ -781,27 +781,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
     setDetails(results.readingCourse, results.listeningCourse);
  }
 
-
- function setPlacementLevel(rw_course, reading, ls_course, listening) {
-     let reading_container = document.getElementById('reading');
-     // let writing_container = document.getElementById('writing');
-     let listening_container = document.getElementById('listening');
-
-     console.log('courses', rw_course, ls_course);
-
-     //highlight courses on screen (left side)
-     document.getElementById(rw_course).classList.add('active');
-     document.getElementById(ls_course).classList.add('active');
-
-     //show details for each reco (right side)
-     setDetails(rw_course, ls_course);
-
-     //show selected values - TESTING ONLY
-     reading_container.innerHTML = reading;
-     // writing_container.innerHTML = writing;
-     listening_container.innerHTML = listening;
- }
-
  function setDetails(reading, listening) {
      if (reading != listening) {
          const courses = sort(reading, listening); // returns ordered array
@@ -829,27 +808,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  function getCourseNumber(courseId) {
      return courseId.substring(4);
  }
-
-//  function displayApply() {
-//      // build intro text
-//      let intro = document.createElement('p');
-//      let introMsg = `Hi <span id="userName">${PLACEMENT.first+','}</span><br/>It doesn't look like you are a student yet, don't forget to apply to SDCCD.`
-//      intro.innerHTML = introMsg;
-
-//      //build button
-//      let button = document.createElement('a');
-//      button.classList.add('waves-effect', 'waves-light', 'btn-large');
-//      button.href = "https://www.opencccapply.net/uPortal/f/u63l1s1000/normal/render.uP";
-//      button.target = "_blank";
-//      button.innerHTML = "Apply to SDCCD";
-
-//      //display
-//      let applyContainer = document.getElementById('apply');
-//      applyContainer.appendChild(intro);
-//      applyContainer.appendChild(button);
-//      applyContainer.style.display = 'block';
-//  }
-
  /*
 
 
@@ -884,7 +842,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          let course_id = getCourseId(e.target);
          flagSelected(course_id);
 
-         if (course_id != PLACEMENT.ls_course && course_id != PLACEMENT.rw_course) {
+         if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
              showCourseDetails(course_id);
          } else {
              reset();
@@ -930,7 +888,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function buildLink(url) {
      if(url == null) {
-         console.log('it is undefined');
+         console.log('course link not provided');
          return "";
      }
      console.log('url', url);
@@ -1209,15 +1167,14 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      saveField(PLACEMENT.email, 'email');
      saveField(PLACEMENT.csid, 'csid');
      saveField(PLACEMENT.phone, 'phone');
-     saveField(PLACEMENT.student, 'student');
-     saveField(Number(PLACEMENT.listen_lvl), 'ls_self_selected');
-     saveField(Number(PLACEMENT.listen), 'ls_sample_selected');
-     saveField(Number(PLACEMENT.ls_score), 'ls_score');
-     saveField(PLACEMENT.ls_course, 'ls_course');
-     saveField(Number(PLACEMENT.reading_lvl), 'rw_self_selected');
-     saveField(Number(PLACEMENT.reading), 'rw_sample_selected');
-     saveField(Number(PLACEMENT.rw_score), 'rw_score');
-     saveField(PLACEMENT.rw_course, 'rw_course');
+
+     saveField(Number(PLACEMENT.listen_lvl), 'listening_self_selected');
+     saveField(Number(PLACEMENT.listen), 'listening_score');
+     saveField(PLACEMENT.listeningCourse, 'listening_course');
+     saveField(Number(PLACEMENT.reading_lvl), 'reading_self_selected');
+     saveField(Number(PLACEMENT.reading), 'reading_score');
+     saveField(PLACEMENT.readingCourse, 'reading_course');
+
      if(PLACEMENT.campus.hasValues) {
          saveField(PLACEMENT.campus.toString, 'campus');
          saveObj(PLACEMENT.campus.obj, 'campus');
