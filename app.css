@@ -503,7 +503,7 @@ h3 {
     background: var(--lvl4-bg-color);
 }
 
-#course_recos .course-details[data-course="ELAC101X"] h4 {
+#course_recos .course-details[data-course="PLA"] h4 {
     background: var(--lvl5-bg-color);
 }
 
