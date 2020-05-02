@@ -115,20 +115,10 @@
             "desc": "The Placement Assistant will identify courses that students can enroll in using prior academic history. Students will report cumulative, unweighted high school GPA and their completed English and math courses.  Based on the information reported, students will receive an English placement milestone. ",
             "label": "Placement Assistant"
         },
-        "ENGL101X": {
-            "title": "Reading, Composition & Academic Literacy (ELAC Emphasis)",
-            "desc": "In this class, we work with other ELAC students and native speakers. We write narratives, expository, and research papers. We share our knowledge and experiences in a safe space. We explore our writing, making connections to the stories we read. We get the support we need as a multilingual writers and speakers.",
-            "label": "ENGL101X"
-        },
-        "ENGL101": {
-            "title": "Reading & Composition",
-            "desc": "This course is designed for transfer-level students or for those who want to develop competence in college level reading and composition. Students read, analyze, discuss and think critically using a variety of works and sources. Based on these activities, students write essays, fully documented research projects, and other types of texts for various purposes and audiences. This written work, which demonstrates effective, logical, and precise expression of ideas, totals at least 6,000 graded words. Designated sections of this course may be taught from a specific cultural perspective.",
-            "label": "ENGL101"
-        },
-        "ENGL105": {
-            "title": "Composition & Literature",
-            "desc": "This is a composition course using literature as a background for improving writing skills. Students discuss the general nature and elements of literature and literary criticism by reading and analyzing representative works of fiction, drama, and poetry. Based on this subject matter, students are required to write a variety of critical papers, including a research paper, comprising at least 6,000 graded words. This course is intended for students majoring in English or those students interested in literature and in developing strong critical and analytical writing skills. Designated sections of this course may be taught from a specific cultural perspective.",
-            "label": "ENGL105"
+        "CHALLENGE": {
+            "title": "Challenge & Petition",
+            "desc": "You may want to challenge...",
+            "label": "Challenge Process"
         }
     }
 }

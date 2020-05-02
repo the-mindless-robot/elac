@@ -38,22 +38,6 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  //placement object holds all data
  const PLACEMENT = {};
 
- //course options
- const RW_COURSES = [
-     "ELAC15",
-     "ELAC25",
-     "ELAC35",
-     "ELAC145",
-     "ENGL101X"
- ];
- const LS_COURSES = [
-     "ELAC15",
-     "ELAC23",
-     "ELAC33",
-     "ELAC145",
-     "ENGL101X"
- ];
-
 function buildLogicRules(sheetData) {
     // console.log('sheetData', sheetData);
     const logic = {};
@@ -480,7 +464,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          loadPanelData(panel.dataset.sample, panel);
      } else {
          if (panel.dataset.layout) {
-             loadLayout();
+            //loadLayout();
          }
          panel.style.display = "block";
      }
@@ -497,15 +481,15 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      }
  }
 
- //show/hide CSID field based on student status
- function loadLayout() {
-     //only show csid field if they are a student
-     if (PLACEMENT.student && PLACEMENT.student == 'yes') {
-         // console.log('show csid');
-         CSID.style.display = 'block';
-     }
-     console.log('PLACEMENT', PLACEMENT.student)
- }
+//  //show/hide CSID field based on student status
+//  function loadLayout() {
+//      //only show csid field if they are a student
+//      if (PLACEMENT.student && PLACEMENT.student == 'yes') {
+//          // console.log('show csid');
+//          CSID.style.display = 'block';
+//      }
+//      console.log('PLACEMENT', PLACEMENT.student)
+//  }
 
  function loadPanelData(type, panel) {
      console.log('data loaded', SAMPLE_DATA, 'type', type, 'panel', panel);
@@ -734,11 +718,11 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  //evaluation of data for course recommendations
 
  function eval() {
+    console.log('PLACEMENT before', PLACEMENT);
      // convert selected values to numbers
-     const readingScore = Number(PLACEMENT.reading);
-     // let writing = Number(PLACEMENT.writing);
-     const listeningScore = Number(PLACEMENT.listen);
-
+     const readingScore = typeof PLACEMENT.reading == 'string' && PLACEMENT.reading.length > 0 ? PLACEMENT.reading : false;
+     const listeningScore = typeof PLACEMENT.listen == 'string' && PLACEMENT.listen.length > 0 ? PLACEMENT.listen : false;
+      console.log('reading', readingScore, 'listen', listeningScore);
      let results = null;
 
      // if all values present
@@ -758,7 +742,20 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          console.error('missing scores');
      }
      displayRecos(results);
+     //for testing purposes
+     displayLevels(results, readingScore, listeningScore);
 
+ }
+
+ function displayLevels(results, reading, listening) {
+    //testing purposes
+    const readingContainer = document.getElementById('reading');
+    const listeningContainer = document.getElementById('listening');
+    const levelContainer = document.getElementById('milestone');
+
+    readingContainer.innerHTML = reading;
+    listeningContainer.innerHTML = listening;
+    levelContainer.innerHTML = results.level;
  }
 
  function evaluateScores(readingScore, listeningScore) {
@@ -774,16 +771,14 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function displayRecos(results) {
     //highlight courses on screen (left side)
+    if(results.readingCourse != 'CHALLENGE')
     document.getElementById(results.readingCourse).classList.add('active');
+
+    if(results.listeningCourse != 'CHALLENGE')
     document.getElementById(results.listeningCourse).classList.add('active');
 
     //show details for each reco (right side)
     setDetails(results.readingCourse, results.listeningCourse);
-
-    //testing purposes
-    const readingContainer = document.getElementById('reading');
-    const listeningContainer = document.getElementById('listening');
-
  }
 
 
@@ -820,8 +815,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function sort(reading, listening) {
-     let rNum = reading == 'PLA' ? 1000 : getCourseNumber(reading);
-     let lNum = listening == 'PLA' ? 1000 : getCourseNumber(listening);
+     let rNum = reading == 'PLA' || reading == 'CHALLENGE'? 1000 : getCourseNumber(reading);
+     let lNum = listening == 'PLA' || listening == 'CHALLENGE'? 1000 : getCourseNumber(listening);
 
      if (Number(lNum) > Number(rNum)) {
          return [reading, listening];
