@@ -57,12 +57,6 @@
             }
         }
     },
-    "listening": {
-        "elac15": ["hqh1MRWZjms"],
-        "elac25": ["MMmOLN5zBLY"],
-        "elac35": ["foLf5Bi9qXs"],
-        "elac145": ["D9Ihs241zeg"]
-    },
     "courses": {
         "ELAC15": {
             "title": "Introduction to English Literacy and Communication",
