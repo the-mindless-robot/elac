@@ -1070,50 +1070,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      return false;
  }
 
-
-
-
- /*
- hhhhhhh                                lllllll
- h:::::h                                l:::::l
- h:::::h                                l:::::l
- h:::::h                                l:::::l
-  h::::h hhhhh           eeeeeeeeeeee    l::::lppppp   ppppppppp
-  h::::hh:::::hhh      ee::::::::::::ee  l::::lp::::ppp:::::::::p
-  h::::::::::::::hh   e::::::eeeee:::::eel::::lp:::::::::::::::::p
-  h:::::::hhh::::::h e::::::e     e:::::el::::lpp::::::ppppp::::::p
-  h::::::h   h::::::he:::::::eeeee::::::el::::l p:::::p     p:::::p
-  h:::::h     h:::::he:::::::::::::::::e l::::l p:::::p     p:::::p
-  h:::::h     h:::::he::::::eeeeeeeeeee  l::::l p:::::p     p:::::p
-  h:::::h     h:::::he:::::::e           l::::l p:::::p    p::::::p
-  h:::::h     h:::::he::::::::e         l::::::lp:::::ppppp:::::::p
-  h:::::h     h:::::h e::::::::eeeeeeee l::::::lp::::::::::::::::p
-  h:::::h     h:::::h  ee:::::::::::::e l::::::lp::::::::::::::pp
-  hhhhhhh     hhhhhhh    eeeeeeeeeeeeee llllllllp::::::pppppppp
-                                                p:::::p
-                                                p:::::p
-                                               p:::::::p
-                                               p:::::::p
-                                               p:::::::p
-                                               ppppppppp
- */
- //help descriptions for skills buttons
-
- let helpers = document.querySelectorAll('.help');
- for(const helper of helpers) {
-     helper.addEventListener("mouseover", (ev)=>{
-         let level = ev.target.dataset.value;
-         let containerId = ev.target.parentElement.dataset.id;
-         let textContainer = document.getElementById(containerId+'_help');
-         textContainer.innerHTML = helpMessages[containerId][level];
-     });
-     helper.addEventListener("mouseout", (ev)=>{
-         let containerId = ev.target.parentElement.dataset.id;
-         let textContainer = document.getElementById(containerId+'_help');
-         textContainer.innerHTML = "";
-     });
- }
-
  /*
                                                                              iiii
                                                                             i::::i
