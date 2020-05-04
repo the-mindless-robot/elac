@@ -81,7 +81,6 @@ function buildLogicRules(sheetData) {
         }
         // add value
         logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
-
     }
     console.log('logic', logic);
     return logic;
@@ -221,7 +220,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          let video_id = ROUTER.ACTIVE_SUB_PANEL;
      //    let player = videosArray[video_id];
      //    console.log('plyer', player);
-     console.log('videos', videos, 'id', video_id);
+    //  console.log('videos', videos, 'id', video_id);
         let player = videos['video'+video_id];
         player.stopVideo();
      });
@@ -230,7 +229,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  let next_panel_btns = document.getElementsByClassName('next');
  for (let i = 0; i < next_panel_btns.length; i++) {
      next_panel_btns[i].addEventListener('click', (e) => {
-         console.log('NEXT_PANEL', ROUTER.NEXT_PANEL);
          checkArea(ROUTER.NEXT_PANEL);
          displayPanel(ROUTER.NEXT_PANEL);
      });
@@ -259,14 +257,12 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          let level = Number(e.target.dataset.value) - 1;
          //adjust for no level 5 samples in reading or listening
          if(level == 4) {
-             console.log('dropped level');
              level = 3;
          }
 
          let subj = getDataId(e.target);
          subj = subj.split("_")[0];
 
-         console.log('subj', subj, 'lvl', level);
          displayPanel(level, subj);
      });
  }
@@ -318,9 +314,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function checkArea(panelIndex) {
-     console.log('PANEL:', panelIndex, 'ROUTER.AREA:', ROUTER.AREA);
      let [hasArea, area] = getPanelArea(panelIndex);
-     console.log('hasArea', hasArea, 'area', area);
      if (hasArea) {
          //set previous sections as completed
          setCompletedArea(ROUTER.AREA);
@@ -335,7 +329,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function getPanelArea(index) {
      let panel = document.querySelector('.panel[data-index="' + index + '"]');
-     console.log('checking panel', panel);
      if (panel.dataset.area) {
          return [true, panel.dataset.area];
      }
@@ -374,7 +367,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  // type is only used when naviagting sub panels
  function displayPanel(index, type=false) {
-     console.log('type', type);
      if (index == ROUTER.PLACEMENT_PANEL && !type) {
          showLoader();
          console.log('EVAL!');
@@ -506,18 +498,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      }
  }
 
-//  //show/hide CSID field based on student status
-//  function loadLayout() {
-//      //only show csid field if they are a student
-//      if (PLACEMENT.student && PLACEMENT.student == 'yes') {
-//          // console.log('show csid');
-//          CSID.style.display = 'block';
-//      }
-//      console.log('PLACEMENT', PLACEMENT.student)
-//  }
-
  function loadPanelData(type, panel) {
-     console.log('data loaded', SAMPLE_DATA, 'type', type, 'panel', panel);
      switch (type) {
          case 'writing':
              showLoader();
@@ -536,7 +517,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  async function loadWritingSamples() {
      let samples = SAMPLE_DATA.writing;
      let hasData = await writingLoader(samples);
-     console.log('got data', hasData);
      hideLoader();
  }
 
@@ -550,9 +530,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  async function loadReadingSamples() {
      let samples = SAMPLE_DATA.reading;
      let version = getRandomInt(3);
-     console.log('v', version);
      let hasData = await readingLoader(samples, version);
-     console.log('got data', hasData);
      hideLoader();
  }
 
@@ -619,7 +597,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      ROUTER.ACTIVE_TIMER = true;
 
      var limit = setEndTime(mins);
-     console.log('timer', ROUTER.TIMER);
 
      ROUTER.TIMER = setInterval(function() {
          let now = new Date().getTime();
@@ -632,7 +609,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
              seconds = "0"+seconds;
          }
 
-         console.log('time', time);
          if(time > 0) {
              updateTimer(minutes, seconds);
          } else {
@@ -650,19 +626,15 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function unlockBtns() {
-     console.log('unlock btns! @ panel', ROUTER.ACTIVE_SUB_PANEL);
      let panel = document.querySelector('.sub-panel-listen[data-index="'+ROUTER.ACTIVE_SUB_PANEL+'"]');
 
      let options = panel.querySelector('.options');
      ROUTER.LISTEN_PANELS_VISITED.push(ROUTER.ACTIVE_SUB_PANEL);
 
      let buttons = options.querySelectorAll('.btn');
-     console.log('btns', buttons);
 
      for(let btn of buttons) {
-         console.log('btn a', btn.attributes);
          btn.removeAttribute('disabled');
-         console.log('btn b', btn.attributes);
      }
  }
 
@@ -701,7 +673,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  for (let i = 0; i < values.length; i++) {
      values[i].addEventListener('click', (e) => {
          // let field = e.target.dataset.id;
-         console.log('getting value');
          let field = getDataId(e.target);
          PLACEMENT[field] = e.target.dataset.value;
          console.log('placement', PLACEMENT);
@@ -743,11 +714,9 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  //evaluation of data for course recommendations
 
  function eval() {
-    console.log('PLACEMENT before', PLACEMENT);
      // convert selected values to numbers
      const readingScore = typeof PLACEMENT.reading == 'string' && PLACEMENT.reading.length > 0 ? PLACEMENT.reading : false;
      const listeningScore = typeof PLACEMENT.listen == 'string' && PLACEMENT.listen.length > 0 ? PLACEMENT.listen : false;
-      console.log('reading', readingScore, 'listen', listeningScore);
      let results = null;
 
      // if all values present
@@ -786,10 +755,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  function evaluateScores(readingScore, listeningScore) {
 
      const values = logicRules["R"+readingScore]["L"+listeningScore];
-     console.log('values', values);
      const readingCourse = typeof values.readingCourse == 'string' && values.readingCourse.length > 0 ? values.readingCourse : values.listeningCourse;
      const listeningCourse = typeof values.listeningCourse == 'string' && values.listeningCourse.length > 0 ? values.listeningCourse : values.readingCourse;
-     console.log('r_course:', readingCourse, 'l_course', listeningCourse);
      const level = typeof values.level == 'string' && values.level.length > 0 ? values.level : false;
      return {level, readingCourse, listeningCourse};
  }
@@ -916,7 +883,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          console.log('course link not provided');
          return "";
      }
-     console.log('url', url);
      return `<a href="${url}" target="_blank"><i class="material-icons">open_in_new</i>View More Details</a>`;
  }
 
@@ -945,10 +911,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function getCourseId(target) {
      if (target.classList.contains('course')) {
-         console.log('showCourse', target.id);
          return target.id;
      } else {
-         console.log('showCourse', target.parentElement.id);
          return target.parentElement.id;
      }
  }
@@ -968,7 +932,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function clearSelected() {
-     console.log('selected', SELECTED_COURSE);
      if (SELECTED_COURSE != "none") {
          document.getElementById(SELECTED_COURSE).classList.remove('selected-course');
      }
@@ -1087,7 +1050,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function validText(value) {
-     console.log('text value: ', value);
      if (value == "" || value == undefined || !value) {
          return false;
      }
@@ -1143,13 +1105,11 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          let level = ev.target.dataset.value;
          let containerId = ev.target.parentElement.dataset.id;
          let textContainer = document.getElementById(containerId+'_help');
-         console.log('data in', level, containerId, textContainer);
          textContainer.innerHTML = helpMessages[containerId][level];
      });
      helper.addEventListener("mouseout", (ev)=>{
          let containerId = ev.target.parentElement.dataset.id;
          let textContainer = document.getElementById(containerId+'_help');
-         console.log('data out', containerId, textContainer);
          textContainer.innerHTML = "";
      });
  }
@@ -1217,7 +1177,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function saveField(value, caspioFieldName) {
      let fieldName = 'InsertRecord'+ caspioFieldName;
-     console.log(`${fieldName} : ${value}`);
+    //  console.log(`${fieldName} : ${value}`);
      document.getElementById(fieldName).value = value;
  }
 
@@ -1225,7 +1185,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      // caspio fields must match object keys
      Object.keys(obj).forEach(key =>{
          let field = fieldNamePrefix + '_' + key.toLowerCase();
-         console.log(String(obj[key]), typeof(obj[key]));
+        //  console.log(String(obj[key]), typeof(obj[key]));
          saveField(String(obj[key]), field);
      });
  }
