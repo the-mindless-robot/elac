@@ -1,10 +1,4 @@
 {
-    "writing": {
-        "elac15": "My hometown and San Diego are different for three reasons. First, the food in Cairo is only Egyptian food. In San Diego, there are many kinds of food. For example, there is Chinese food, Arabic food, American food and more. Next, the location is different. Cairo is not on the Ocean. San Diego is on the Pacific Ocean. Finally, the language is different. People in Cairo speak Arabic, but the people in San Diego speak English. Moreover, they speak many languages. In conclusion, Cairo and San Diego are different.",
-        "elac25": "I moved from Mexico City to San Diego five years ago. My hometown, Mexico City, is the largest city in my country. There are thousands of people from different places living there. There are people from Spain, Argentina, Israel, and China. In fact, there is a famous Chinese area in Coyoacan. We also have food from different countries, but the most favorite food everyone likes is Mexican food. Here in San Diego there are similar things from my hometown. There are many people living here from other parts of the world. The food is also another similar thing. There is Chinese food, Argentinian food, Thai food, American food. However, everyone loves Mexican food here too. The only big difference is because San Diego is smaller than Mexico City. In conclusion, there are many similar things between my hometown and San Diego.",
-        "elac35": "When I moved to San Diego from my hometown, I saw three main things are different about San Diego and Vietnam. The first main thing is the people. People in San Diego are from other countries like Mexico or Iran. They speak other languages and English. I see people from different cultures in the same place. In Vietnam, we have Vietnamese people. Only in big cities, there are people from other countries. The food is something very different. I came to San Diego three years ago, and I have never eaten Mexican food before. It is very spicy. Here in San Diego, you can also eat food from other countries. Lastly, the big difference between San Diego and Vietnam has to be the language. In my country, we speak Vietnamese.In San Diego, people speak Spanish, Arabic, or Chinese. However, everyone speaks English because it is American. So, there are many different things from San Diego and Vietnam. That is the reason I really like them!",
-        "elac145": "I’m from Iran. I was born and raised in Tehran, the capital city of Iran. A city which is located in northeast of Iran. It is a modern tall city with a lot of skyscrapers and picturesque old buildings here and there. Tehran is a crowded city as well. Life in this city can be very exciting, especially for young people. There are always plenty of things to do. There is a wide range of shops and lots of night-life activities. Sometimes, it gets too busy during rush hour, and the streets get so packed with heavy traffic. So, moving around can become a headache. Everyone commutes to Iran from different small towns around the city. You can see a constant bustle of people coming and going. Tehran, overall, is a city of interesting things, which makes it very special. I love my hometown."
-    },
     "reading": {
         "elac15": {
             "v0": {
@@ -64,10 +58,10 @@
         }
     },
     "listening": {
-        "elac15": "https://www.youtube.com/embed/hqh1MRWZjms",
-        "elac25": "https://www.youtube.com/embed/MMmOLN5zBLY",
-        "elac35": "https://www.youtube.com/embed/foLf5Bi9qXs",
-        "elac145": "https://www.youtube.com/embed/D9Ihs241zeg"
+        "elac15": ["hqh1MRWZjms"],
+        "elac25": ["MMmOLN5zBLY"],
+        "elac35": ["foLf5Bi9qXs"],
+        "elac145": ["D9Ihs241zeg"]
     },
     "courses": {
         "ELAC15": {

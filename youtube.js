@@ -1,17 +1,25 @@
 
-console.log('scripting');
-var tag = document.createElement('script');
-tag.id = 'iframe-demo';
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function loadYoutubeAPI() {
+  console.log('loading youtube');
+  var tag = document.createElement('script');
+  tag.id = 'iframe-demo';
+  tag.src = 'https://www.youtube.com/iframe_api';
+  var firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+}
+
+function getVideoId(elacLevel) {
+  const version = getRandomInt(listeningVideos[elacLevel].length);
+  console.log('vid', elacLevel, version, listeningVideos[elacLevel][version]);
+  return listeningVideos[elacLevel][version];
+}
 
 var videos = {};
 function onYouTubeIframeAPIReady() {
-    videos.video0 = new YT.Player('video-1', {
+  videos.video0 = new YT.Player('video-1', {
     height: '315',
     width: '560',
-    videoId: 'hqh1MRWZjms',
+    videoId: getVideoId("ELAC15"),
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -20,7 +28,7 @@ function onYouTubeIframeAPIReady() {
   videos.video1 = new YT.Player('video-2', {
     height: '315',
     width: '560',
-    videoId: 'MMmOLN5zBLY',
+    videoId: getVideoId("ELAC23"),
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -29,7 +37,7 @@ function onYouTubeIframeAPIReady() {
   videos.video2 = new YT.Player('video-3', {
     height: '315',
     width: '560',
-    videoId: 'foLf5Bi9qXs',
+    videoId: getVideoId("ELAC33"),
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -38,18 +46,18 @@ function onYouTubeIframeAPIReady() {
   videos.video3 = new YT.Player('video-4', {
     height: '315',
     width: '560',
-    videoId: 'D9Ihs241zeg',
+    videoId: getVideoId("ELAC145"),
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
     }
   });
+  console.log('video players', videos);
 }
-
 
 function onPlayerReady(event) {
-    console.log('yt active');
+  console.log('yt active');
 }
 function onPlayerStateChange(event) {
-    console.log('video changed');
+  console.log('video changed');
 }

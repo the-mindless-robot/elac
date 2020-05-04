@@ -38,6 +38,33 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
  //placement object holds all data
  const PLACEMENT = {};
 
+function buildVideoList(sheetData) {
+    const videos = {};
+    for(const row of sheetData.data) {
+        for(const field in row) {
+            const formattedField = formatValue(field);
+            const value = typeof row[field] == 'string' && row[field].length > 0 ? row[field] : false;
+
+            if(!value) continue; //skip if empty
+
+            if(!videos.hasOwnProperty(formattedField)) {
+                videos[formattedField] = [];
+            }
+
+            videos[formattedField].push(row[field].trim());
+        }
+    }
+    return videos;
+}
+
+const videoList = new GoogleSheet(config.sheet, 2);
+let listeningVideos = null;
+videoList.load(buildVideoList).then(videos => {
+    console.log('videos', videos);
+    listeningVideos = videos;
+    loadYoutubeAPI();
+});
+
 function buildLogicRules(sheetData) {
     // console.log('sheetData', sheetData);
     const logic = {};
@@ -48,15 +75,13 @@ function buildLogicRules(sheetData) {
         const readingCourse = formatValue(row.course1);
         const listeningCourse = formatValue(row.course2);
         //check if reading key exists
-        if(logic.hasOwnProperty(readingKey)) {
-            // add listening key with value
-            logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
-        } else {
+        if(!logic.hasOwnProperty(readingKey)) {
             // add reading key
             logic[readingKey] = {};
-            // add listening key with value
-            logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
         }
+        // add value
+        logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
+
     }
     console.log('logic', logic);
     return logic;
