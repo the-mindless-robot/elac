@@ -8,9 +8,9 @@ class GoogleSheet {
         let response = await fetch(this.url);
         let data = await response.json();
 
-        let sheet = {};
-        let sheetName = data.feed.title.$t;
-        let rows = [];
+        const sheet = {};
+        const sheetName = data.feed.title.$t;
+        const rows = [];
 
         if (data.feed.entry) {
             data.feed.entry.forEach(row => {
@@ -26,7 +26,6 @@ class GoogleSheet {
         } else {
             console.error('No data in sheet');
         }
-        // console.log('cleanRows =>', rows);
         // sheet[sheetName] = rows;
         sheet.data = rows;
 
