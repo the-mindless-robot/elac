@@ -737,7 +737,10 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      }
      displayRecos(results);
      //for testing purposes
-     displayLevels(results, readingScore, listeningScore);
+     if(config.testingVersion) {
+        displayLevels(results, readingScore, listeningScore);
+     }
+
 
  }
 
@@ -750,6 +753,9 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
     readingContainer.innerHTML = reading;
     listeningContainer.innerHTML = listening;
     levelContainer.innerHTML = results.level;
+
+    const userValues = document.querySelector('.user-values');
+    userValues.style.display = 'block';
  }
 
  function evaluateScores(readingScore, listeningScore) {
