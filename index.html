@@ -3,6 +3,8 @@
 
 	<head>
 		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<title>ELAC</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -136,7 +138,7 @@
 	<div class="panel" data-area="reading">
 		<div class="panel-content">
 			<p>How would you describe your reading skills in English?</p>
-			<div class="options" data-id="reading_lvl">
+			<div class="options responsive" data-id="reading_lvl">
 				<a class="waves-effect waves-light btn next value setLevel help" data-value="1">Beginner</a>
 				<a class="waves-effect waves-light btn next value setLevel help" data-value="2">Intermediate</a>
 				<a class="waves-effect waves-light btn next value setLevel help" data-value="3">High Intermediate</a>
@@ -305,7 +307,7 @@
 		<p>How would you describe your listening skills in English?</p>
 
 
-		<div class="options" data-id="listen_lvl">
+		<div class="options responsive" data-id="listen_lvl">
 			<a class="waves-effect waves-light btn next value setLevel help" data-value="1">Beginner</a>
 			<a class="waves-effect waves-light btn next value setLevel help" data-value="2">Intermediate</a>
 			<a class="waves-effect waves-light btn next value setLevel help" data-value="3">High Intermediate</a>
@@ -323,7 +325,9 @@
 		<div class="sub-panel-listen">
 			<!-- <p>E-10 Listening Sample</p> -->
 			<div class="sample-content">
+				<div class="responsive-video-container">
 				<div id="video-1" class="video"></div>
+				</div>
 				<!-- <iframe class="video" id="video-1" width="560" height="315" src="https://www.youtube.com/embed/hqh1MRWZjms?enablejsapi=1" frameborder="0"
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
@@ -340,7 +344,9 @@ allowfullscreen></iframe> -->
 		<div class="sub-panel-listen">
 			<!-- <p>E-20 Listen Sample</p> -->
 			<div class="sample-content">
+				<div class="responsive-video-container">
 				<div id="video-2" class="video"></div>
+				</div>
 				<!-- <iframe class="video" id="video-2" width="560" height="315" src="https://www.youtube.com/embed/MMmOLN5zBLY?enablejsapi=1 frameborder="0"
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
@@ -357,7 +363,9 @@ allowfullscreen></iframe> -->
 		<div class="sub-panel-listen">
 			<!-- <p>E-30 Listen Sample</p> -->
 			<div class="sample-content">
+				<div class="responsive-video-container">
 				<div id="video-3" class="video"></div>
+				</div>
 				<!-- <iframe class="video" id="video-3" width="560" height="315" src="https://www.youtube.com/embed/foLf5Bi9qXs?enablejsapi=1" frameborder="0"
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
@@ -374,7 +382,10 @@ allowfullscreen></iframe> -->
 		<div class="sub-panel-listen">
 			<!-- <p>E-40 Listen Sample</p> -->
 			<div class="sample-content">
-				<div id="video-4" class="video"></div>
+				<div class="responsive-video-container">
+					<div id="video-4" class="video"></div>
+				</div>
+
 				<!-- <iframe class="video" id="video-4" width="560" height="315" src="https://www.youtube.com/embed/D9Ihs241zeg?enablejsapi=1" frameborder="0"
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
@@ -451,7 +462,7 @@ allowfullscreen></iframe> -->
 
 					</div>
 					<hr />
-					<h3>Recommended Courses</h3>
+					<h3>Recommended Course(s)</h3>
 					<div id="course_recos">
 
 					</div>
@@ -514,16 +525,17 @@ allowfullscreen></iframe> -->
 <!-- text for help container -->
 <div id="help-container">
 	<div class="help-wrapper">
-		<div class="help-content">
-			<h4>Need Help?</h4>
-			<p><span>
-				If you are confused or unsure of how to complete ELAC GO! please visit or contact the Assessment
-				Center. A staff member will guide you through the process.
-				</span></p>
-			<a href="http://sdmesa.edu/student-services/testing-center/" target="_bank"><i class="material-icons">open_in_new</i>Assessment Center</a>
-		</div>
+
 	</div>
 
+</div>
+<div class="help-content">
+	<h4>Need Help?</h4>
+	<p><span>
+		If you are confused or unsure of how to complete ELAC GO! please visit or contact the Assessment
+		Center. A staff member will guide you through the process.
+		</span></p>
+	<a href="http://sdmesa.edu/student-services/testing-center/" target="_bank"><i class="material-icons">open_in_new</i>Assessment Center</a>
 </div>
 
 
@@ -547,7 +559,8 @@ allowfullscreen></iframe> -->
 			btn.classList.add('active');
 		}
 
-		let help = document.getElementById('help-container');
+		const helpText = document.querySelector('.help-content');
+		const help = document.getElementById('help-container');
 		if (help.classList.contains('open')) {
 			help.classList.remove('open');
 		} else {

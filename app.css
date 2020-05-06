@@ -478,7 +478,7 @@ h3 {
 }
 
 .disclaimer {
-    width: 42em;
+    max-width: 42em;
 }
 
 /* #course_recos[data-level="1"] .course-details {
@@ -506,6 +506,10 @@ h3 {
 
 #course_recos .course-details[data-course="PLA"] h4 {
     background: var(--lvl5-bg-color);
+}
+
+#details {
+    min-width: 300px;
 }
 
 #details hr {
@@ -554,6 +558,11 @@ strong {
     transform: scale(1);
 }
 
+#help-container.open + .help-content {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
 .help-wrapper {
     background-color: #023867;
     opacity: .95;
@@ -566,6 +575,10 @@ strong {
 .help-content {
     line-height: 1.8;
     color: #fff;
+    transition: transform .5s linear,
+    -webkit-transform .5s linear;
+    transform: scale(0);
+    padding: 10px;
 }
 .help-content p {
     font-size: 18px;
@@ -574,6 +587,8 @@ strong {
 
 .help-content a {
     font-size: 1.3rem;
+    color: #fff;
+    font-weight: bold;
 }
 
 .help-content a i.material-icons {
@@ -631,3 +646,84 @@ strong {
 .req {
     color: red;
 }
+
+.help-content {
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    z-index: 1002;
+}
+
+.responsive-video-container {
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:0;
+}
+
+.responsive-video-container iframe {
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}
+
+/*
+
+88b           d88               88           88  88
+888b         d888               88           ""  88
+88`8b       d8'88               88               88
+88 `8b     d8' 88   ,adPPYba,   88,dPPYba,   88  88   ,adPPYba,
+88  `8b   d8'  88  a8"     "8a  88P'    "8a  88  88  a8P_____88
+88   `8b d8'   88  8b       d8  88       d8  88  88  8PP"""""""
+88    `888'    88  "8a,   ,a8"  88b,   ,a8"  88  88  "8b,   ,aa
+88     `8'     88   `"YbbdP"'   8Y"Ybbd8"'   88  88   `"Ybbd8"'
+
+*/
+
+@media screen and (max-width: 700px) {
+    .breadCrumbs {display: none;}
+    .flex-help {display: none;}
+    .header-flex .title-flex {
+        padding: 0;
+        padding-left: 10px;
+        padding-bottom: 10px;
+    }
+    .options.responsive {
+        display: flex;
+        flex-direction: column;
+    }
+    .options.responsive a {
+        margin: 5px 0;
+        height: 42px;
+        line-height: 42px;
+    }
+    .panel-content.full-width {
+        max-width: 100%;
+        padding: 10px;
+    }
+    .panel-content.full-width p:first-of-type {
+        margin: 0;
+    }
+    #recos {
+        display: none;
+    }
+    #details h3:first-of-type {
+        display: none;
+    }
+    section[data-cb-name='cbTable'] {
+        display: none !important;
+    }
+    .cbSubmitButtonContainer {
+        display: none !important;
+    }
+    .course-content p {
+        padding: 10px 0;
+    }
+    div.col.s12.m6 {
+        padding: 0;
+    }
+
+}
+
