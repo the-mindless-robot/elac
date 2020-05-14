@@ -673,6 +673,16 @@ strong {
     position:absolute;
 }
 
+p.headline {
+    margin-bottom: 10px;
+}
+
+p.disc {
+    font-size: 1rem;
+    margin: 0;
+    margin-bottom: 25px;
+}
+
 /*
 
 88b           d88               88           88  88
