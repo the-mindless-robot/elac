@@ -499,6 +499,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function loadPanelData(type, panel) {
+     console.dir(panel);
      switch (type) {
          case 'writing':
              showLoader();
@@ -529,6 +530,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  async function loadReadingSamples() {
      let samples = SAMPLE_DATA.reading;
+     console.debug("READING DATA", samples);
      let version = getRandomInt(3);
      let hasData = await readingLoader(samples, version);
      hideLoader();
@@ -536,7 +538,15 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function readingLoader(samples, version) {
      Object.keys(samples).forEach((key) => {
-         document.getElementById('r-' + key).innerHTML = samples[key]["v" + version].text;
+         let versionData = samples[key]["v" + version];
+         let url = versionData.hasOwnProperty('image') && versionData.image.length > 0 ? versionData.image : false;
+         let alt = versionData.hasOwnProperty('author') && versionData.author.length > 0 ? versionData.author : "";
+         let content = "";
+         if(url) {
+            content += `<img src="${url}" alt="${alt}" class="reading-img"/>`;
+         }
+         content += samples[key]["v" + version].text;
+         document.getElementById('r-' + key).innerHTML = content;
      });
      return true;
  }
@@ -621,7 +631,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
 
  function updateTimer(m, s) {
-     let timer = document.getElementById('countDown');
+     const timer = document.getElementById('countDown');
      timer.innerHTML = m + ':' + s;
  }
 
@@ -768,22 +778,27 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function displayRecos(results) {
+     console.debug('results', results);
     //highlight courses on screen (left side)
-    if(results.readingCourse != 'CHALLENGE')
     document.getElementById(results.readingCourse).classList.add('active');
 
-    if(results.listeningCourse != 'CHALLENGE')
     document.getElementById(results.listeningCourse).classList.add('active');
 
     //show details for each reco (right side)
-    setDetails(results.readingCourse, results.listeningCourse);
+    setDetails(results);
  }
 
- function setDetails(reading, listening) {
-     if (reading != listening) {
-         const courses = sort(reading, listening); // returns ordered array
-         for (const course of courses) {
-             showCourseDetails(course, true);
+ function setDetails(results) {
+     const passed = results.level.indexOf('P') != -1 ? true : false;
+
+     if (results.readingCours != results.listeningCourse) {
+         const courses = sort(results.readingCourse, results.listeningCourse); // returns ordered array
+         for (let course of courses) {
+            const eligible = course == "ELAC23" || results.listeningCourse == "ELAC33" ? true : false;
+            if(passed && eligible) {
+                course += "P";
+            }
+            showCourseDetails(course, true);
          }
      } else {
          // course recos are the same
@@ -792,8 +807,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function sort(reading, listening) {
-     let rNum = reading == 'PLA' || reading == 'CHALLENGE'? 1000 : getCourseNumber(reading);
-     let lNum = listening == 'PLA' || listening == 'CHALLENGE'? 1000 : getCourseNumber(listening);
+     let rNum = reading == 'PLA' ? 1000 : getCourseNumber(reading);
+     let lNum = listening == 'PLA' ? 1000 : getCourseNumber(listening);
 
      if (Number(lNum) > Number(rNum)) {
          return [reading, listening];

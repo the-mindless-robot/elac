@@ -11,6 +11,7 @@
     --lvl5-selected-bg-color: #0238678d;
     --default: rgb(95, 97, 102);
     --selected: rgb(143, 143, 143);
+    --passed: #ffaa00;
 }
 
 .header {
@@ -477,7 +478,7 @@ h3 {
     display: none;
 }
 
-.disclaimer {
+.next-steps {
     max-width: 42em;
 }
 
@@ -491,8 +492,14 @@ h3 {
 
 #course_recos .course-details[data-course="ELAC23"] h4,
 #course_recos .course-details[data-course="ELAC25"] h4
- {
+{
     background: var(--lvl2-bg-color);
+}
+
+#course_recos .course-details[data-course="ELAC23P"] h4,
+#course_recos .course-details[data-course="ELAC33P"] h4
+{
+    background: var(--passed);
 }
 
 #course_recos .course-details[data-course="ELAC33"] h4,
@@ -683,6 +690,10 @@ p.disc {
     margin-bottom: 25px;
 }
 
+img.reading-img {
+    max-width: 100%;
+}
+
 /*
 
 88b           d88               88           88  88
@@ -737,6 +748,10 @@ p.disc {
     }
     div.col.s12.m6 {
         padding: 0;
+    }
+
+    .next-steps p {
+        line-height: 1.1em;
     }
 
 }
