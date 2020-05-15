@@ -546,7 +546,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function logReadingVersions(versions) {
     for(const level in versions) {
-        const key = "r-" + level;
+        const key = level + "R";
         PLACEMENT[key] = versions[level];
     }
  }
@@ -1147,27 +1147,39 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  // in reality this should be done with a backend script
  function saveDataToCaspio() {
      console.log('SAVE', PLACEMENT);
+     // saveField(value, nameOfFieldInCaspio)
+     // user details
      saveField(PLACEMENT.first, 'first');
      saveField(PLACEMENT.last, 'last');
      saveField(PLACEMENT.email, 'email');
      saveField(PLACEMENT.csid, 'csid');
      saveField(PLACEMENT.phone, 'phone');
-
+     if (PLACEMENT.campus.hasValues) {
+         saveField(PLACEMENT.campus.toString, 'campus');
+         saveObj(PLACEMENT.campus.obj, 'campus');
+     }
+     if (PLACEMENT.goals.hasValues) {
+         saveField(PLACEMENT.goals.toString, 'goals');
+         saveObj(PLACEMENT.goals.obj, 'goals');
+     }
+     // user selected scores and results
      saveField(Number(PLACEMENT.listen_lvl), 'listening_self_selected');
      saveField(Number(PLACEMENT.listen), 'listening_score');
      saveField(PLACEMENT.listeningCourse, 'listening_course');
      saveField(Number(PLACEMENT.reading_lvl), 'reading_self_selected');
      saveField(Number(PLACEMENT.reading), 'reading_score');
      saveField(PLACEMENT.readingCourse, 'reading_course');
+     // content shown to user
+     saveField(PLACEMENT.elac15R, 'r_elac15');
+     saveField(PLACEMENT.elac25R, 'r_elac25');
+     saveField(PLACEMENT.elac35R, 'r_elac35');
+     saveField(PLACEMENT.elac145R, 'r_elac145');
+     saveField(PLACEMENT.elac15L, 'l_elac15');
+     saveField(PLACEMENT.elac23L, 'l_elac23');
+     saveField(PLACEMENT.elac33L, 'l_elac33');
+     saveField(PLACEMENT.elac145L, 'l_elac145');
 
-     if(PLACEMENT.campus.hasValues) {
-         saveField(PLACEMENT.campus.toString, 'campus');
-         saveObj(PLACEMENT.campus.obj, 'campus');
-     }
-     if(PLACEMENT.goals.hasValues) {
-         saveField(PLACEMENT.goals.toString, 'goals');
-         saveObj(PLACEMENT.goals.obj, 'goals');
-     }
+
 
      let form = document.getElementById('caspioform');
      form.target = "frame";

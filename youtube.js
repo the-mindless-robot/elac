@@ -16,7 +16,7 @@ function getVideoId(elacLevel) {
 }
 
 function logListeningVersion(level, version, id) {
-  const key = "l-" + level.toLowerCase();
+  const key = level.toLowerCase() + "L";
   PLACEMENT[key] = version+"-"+id;
 }
 
