@@ -561,13 +561,34 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          let version = versions[key];
          console.debug('version', key, version);
          let versionData = samples[key]["v" + version];
-         let url = versionData.hasOwnProperty('image') && versionData.image.length > 0 ? versionData.image : false;
-         let alt = versionData.hasOwnProperty('author') && versionData.author.length > 0 ? versionData.author : "";
+
+         let title = versionData.hasOwnProperty('title') && versionData.title.length > 0 ? versionData.title : "";
+         let intro = versionData.hasOwnProperty('intro') && versionData.intro.length > 0 ? versionData.intro : false;
+         let text = versionData.hasOwnProperty('text') && versionData.text.length > 0 ? versionData.text : false;
+         let source = versionData.hasOwnProperty('source') && versionData.source.length > 0 ? versionData.source : false;
+         let imgSource = versionData.hasOwnProperty('imgSource') && versionData.imgSource.length > 0 ? versionData.imgSource : false;
+         let image = versionData.hasOwnProperty('image') && versionData.image.length > 0 ? versionData.image : false;
+
+
          let content = "";
-         if(url) {
-            content += `<img src="${url}" alt="${alt}" class="reading-img"/>`;
+         if(title.length > 0) {
+             content += `<h4 class="readingTitle">${title}</h4>`;
          }
-         content += samples[key]["v" + version].text;
+         if(image) {
+            content += `<img src="${image}" alt="${title}" class="reading-img"/>`;
+         }
+         if(imgSource) {
+            content += `<span class="imgSource">${imgSource}</span>`
+         }
+         if(intro) {
+             content += `<p class="readingIntro">${intro}</p>`;
+         }
+         if(text) {
+             content += `<div class="readingText">${text}</div>`;
+         }
+         if(source) {
+             content += `<p class="readingSource">${source}</p>`
+         }
          document.getElementById('r-' + key).innerHTML = content;
      });
      return true;
