@@ -532,12 +532,34 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      let samples = SAMPLE_DATA.reading;
      console.debug("READING DATA", samples);
      let version = getRandomInt(3);
-     let hasData = await readingLoader(samples, version);
+     const versions = {
+        "elac15" : getRandomVersion(samples, "elac15"),
+        "elac25" : getRandomVersion(samples, "elac25"),
+        "elac35" : getRandomVersion(samples, "elac35"),
+        "elac145" : getRandomVersion(samples, "elac145")
+     }
+     console.debug('versions', versions);
+     logReadingVersions(versions);
+     let hasData = await readingLoader(samples, versions);
      hideLoader();
  }
 
- function readingLoader(samples, version) {
+ function logReadingVersions(versions) {
+    for(const level in versions) {
+        const key = "r-" + level;
+        PLACEMENT[key] = versions[level];
+    }
+ }
+
+ function getRandomVersion(samples, level) {
+    const numOptions = Object.keys(samples[level]).length;
+    return getRandomInt(numOptions);
+ }
+
+ function readingLoader(samples, versions) {
      Object.keys(samples).forEach((key) => {
+         let version = versions[key];
+         console.debug('version', key, version);
          let versionData = samples[key]["v" + version];
          let url = versionData.hasOwnProperty('image') && versionData.image.length > 0 ? versionData.image : false;
          let alt = versionData.hasOwnProperty('author') && versionData.author.length > 0 ? versionData.author : "";
@@ -791,10 +813,10 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  function setDetails(results) {
      const passed = results.level.indexOf('P') != -1 ? true : false;
 
-     if (results.readingCours != results.listeningCourse) {
+     if (results.readingCourse != results.listeningCourse) {
          const courses = sort(results.readingCourse, results.listeningCourse); // returns ordered array
          for (let course of courses) {
-            const eligible = course == "ELAC23" || results.listeningCourse == "ELAC33" ? true : false;
+            const eligible = course == "ELAC23" || course == "ELAC33" ? true : false;
             if(passed && eligible) {
                 course += "P";
             }
@@ -802,7 +824,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          }
      } else {
          // course recos are the same
-         showCourseDetails(reading, true);
+         showCourseDetails(results.readingCourse, true);
      }
  }
 
@@ -886,6 +908,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function buildCourse(course) {
+     console.debug('build', course);
      let data = SAMPLE_DATA.courses[course];
      if (data) {
          return `

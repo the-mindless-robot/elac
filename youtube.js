@@ -11,7 +11,13 @@ function loadYoutubeAPI() {
 function getVideoId(elacLevel) {
   const version = getRandomInt(listeningVideos[elacLevel].length);
   console.log('vid', elacLevel, version, listeningVideos[elacLevel][version]);
+  logListeningVersion(elacLevel, version, listeningVideos[elacLevel][version]);
   return listeningVideos[elacLevel][version];
+}
+
+function logListeningVersion(level, version, id) {
+  const key = "l-" + level.toLowerCase();
+  PLACEMENT[key] = version+"-"+id;
 }
 
 var videos = {};
