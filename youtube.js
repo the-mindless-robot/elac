@@ -63,6 +63,8 @@ function onYouTubeIframeAPIReady() {
 
 function onPlayerReady(event) {
   console.log('yt active');
+  event.target.unMute();
+  event.target.setVolume(10);
 }
 function onPlayerStateChange(event) {
   console.log('video changed');

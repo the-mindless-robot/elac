@@ -31,7 +31,7 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
          const response = await fetch('data.json');
          return response.json();
      } catch (err) {
-         console.log('failed to load sample data: ', err);
+         console.error('failed to load sample data: ', err);
      }
  }
 
@@ -402,7 +402,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          case 'listen':
              checkVisited(index);
              swapPanels(index, PANELS.LISTEN_PANELS);
-            //  startVideo(index);
+             startVideo(index);
              break;
          default:
              swapPanels(index, PANELS.MAIN);
