@@ -811,7 +811,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function setDetails(results) {
-     const passed = results.level.indexOf('P') != -1 ? true : false;
+     // if level has a P tag but it is not PLA -> return true
+     const passed = results.level.indexOf('P') != -1 && results.level.indexOf('PLA') == -1 ? true : false;
 
      if (results.readingCourse != results.listeningCourse) {
          const courses = sort(results.readingCourse, results.listeningCourse); // returns ordered array
