@@ -389,6 +389,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          console.log('default');
          swapPanelRouter(index, type)
      }
+     window.scrollTo(0,0);
  }
 
  function swapPanelRouter(index, type) {
