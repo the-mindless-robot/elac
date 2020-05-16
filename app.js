@@ -824,8 +824,10 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  function displayRecos(results) {
      console.debug('results', results);
     //highlight courses on screen (left side)
+    if(results.readingCourse != "CE")
     document.getElementById(results.readingCourse).classList.add('active');
 
+    if(results.listeningCourse != "CE")
     document.getElementById(results.listeningCourse).classList.add('active');
 
     //show details for each reco (right side)
@@ -864,6 +866,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function getCourseNumber(courseId) {
+     if(courseId == "CE")
+        return -1;
      return courseId.substring(4);
  }
  /*
@@ -950,7 +954,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          console.log('course link not provided');
          return "";
      }
-     return `<a href="${url}" target="_blank"><i class="material-icons">open_in_new</i>View More Details</a>`;
+     return `<a href="${url}" target="_blank"><i class="material-icons">open_in_new</i>Learn More</a>`;
  }
 
  function addClearBtn() {

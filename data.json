@@ -161,6 +161,12 @@
             "title": "Placement Assistant",
             "desc": "The Placement Assistant will identify courses that students can enroll in using prior academic history. Students will report cumulative, unweighted high school GPA and their completed English and math courses.  Based on the information reported, students will receive an English placement milestone.",
             "label": "Placement Assistant"
+        },
+        "CE": {
+            "title": "Continuing Education",
+            "desc": "Based on your resonses you may want to take free classes at Continuing Education before taking ELAC 15 with us. Email <a href='mailto:ESLsdce@sdccd.edu'>ESLsdce@sdccd.edu</a> for more info or click the link below.",
+            "link": "http://www.sdce.edu/esl/registration-information",
+            "label": "Continuing Education (CE)"
         }
     }
 }
