@@ -142,6 +142,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  PANELS.WRITING_PANELS = document.getElementsByClassName('sub-panel-writing');
  PANELS.READING_PANELS = document.getElementsByClassName('sub-panel-reading');
  PANELS.LISTEN_PANELS = document.getElementsByClassName('sub-panel-listen');
+ PANELS.practice = false;
 
  //sets indexes (data-index attribute); based on the total number of panels
  //hides all panels
@@ -234,6 +235,15 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      });
  }
 
+ let skip_btns = document.getElementsByClassName('skip');
+ for (let i = 0; i < skip_btns.length; i++) {
+     skip_btns[i].addEventListener('click', (e) => {
+        let nextPanel = e.target.dataset.skip;
+        checkArea(nextPanel);
+        displayPanel(nextPanel);
+     });
+ }
+
  let next_subPanel_btns = document.getElementsByClassName('next-sub');
  for (let i = 0; i < next_subPanel_btns.length; i++) {
      next_subPanel_btns[i].addEventListener('click', (e) => {
@@ -274,6 +284,14 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          displayPanel(ROUTER.PLACEMENT_PANEL);
      });
  }
+
+ let practice_btns = document.getElementsByClassName('practice');
+ for (let i = 0; i < practice_btns.length; i++) {
+     practice_btns[i].addEventListener('click', (e) => {
+         PANELS.practice = true;
+     });
+ }
+
 
 
 
@@ -681,8 +699,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function unlockBtns() {
      let panel = document.querySelector('.sub-panel-listen[data-index="'+ROUTER.ACTIVE_SUB_PANEL+'"]');
-
-     let options = panel.querySelector('.options');
+     let options = PANELS.practice ? panel.querySelector('.options.practice-content') : panel.querySelector('.options.live-content');
+    //  let options = panel.querySelector('.options');
      ROUTER.LISTEN_PANELS_VISITED.push(ROUTER.ACTIVE_SUB_PANEL);
 
      let buttons = options.querySelectorAll('.btn');

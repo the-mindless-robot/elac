@@ -67,7 +67,7 @@
 
 				<p>Are you ready?</p>
 				<div class="options" data-id="student">
-					<a class="waves-effect waves-light btn" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" disabled="true">No, I'd like to practice first</a><br />
+					<a class="waves-effect waves-light btn skip practice" data-skip="2">No, I'd like to practice first</a><br />
 					<a class="waves-effect waves-light btn next">Yes, I am ready</a>
 				</div>
 				</a>
@@ -153,6 +153,9 @@
 	<div class="panel" data-sample="reading">
 		<div class="panel-content">
 			<p class="directions">Read the following text and click the best option.</p>
+			<p class="practice-content">
+				This is just for practice.
+			</p>
 			<div class="sub-panel-reading">
 				<div class="sample-content" id="r-elac15">
 					<p>
@@ -202,10 +205,15 @@
 				<p class="source">(from Helen Keller -- dell yearling young reader -- by Stewart & Polly Ann Graff)
 				</p>
 			</div>
-			<div class="options" data-id="reading">
+			<div class="options live-content" data-id="reading">
 				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
 				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+			</div>
+			<div class="options practice-content" data-id="reading">
+				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -233,10 +241,15 @@
 					still back at home herding cattle.</p>
 				<p>(from Long Walk to Water by Linda Sue Park</p>
 			</div>
-			<div class="options" data-id="reading">
+			<div class="options live-content" data-id="reading">
 				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="2">I understand some of this reading.</a><br />
 				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+			</div>
+			<div class="options practice-content" data-id="reading">
+				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -259,10 +272,15 @@
 					by the end of the year. </p>
 				<p>(from Funny in Farsi by Firoozeh Dumas)</p>
 			</div>
-			<div class="options" data-id="reading">
+			<div class="options live-content" data-id="reading">
 				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="3">I understand some of this reading.</a><br />
 				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+			</div>
+			<div class="options practice-content" data-id="reading">
+				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -288,11 +306,16 @@
 					bad. The cancer in her bones had been downright crippling, to both of us, he thought.</p>
 				<p>(from Hotel on the Corner of Bitter and Sweet by Jamie Ford)</p>
 			</div>
-			<div class="options" data-id="reading">
+			<div class="options live-content" data-id="reading">
 				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="4">I understand some of this reading.</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="5">I understand this reading. It is
 					clear.</a>
+			</div>
+			<div class="options practice-content" data-id="reading">
+				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
 			</div>
 		</div>
 	</div>
@@ -300,7 +323,9 @@
 <div class="panel" data-area="listening">
 	<div class="panel-content">
 		<p class="directions">How would you describe your listening skills in English?</p>
-
+		<p class="practice-content">
+			This is just for practice.
+		</p>
 
 		<div class="options responsive" data-id="listen_lvl">
 			<a class="waves-effect waves-light btn next value setLevel help" data-value="1">Beginner</a>
@@ -316,6 +341,9 @@
 <div class="panel" data-sample="listening">
 	<div class="panel-content">
 		<p class="headline directions">Listen to the video and click the best option.</p>
+		<p class="practice-content">
+			This is just for practice.
+		</p>
 		<p class="disc">This section of ELAC Go! allows you to assess your skill in listening. Please note that for the purposes of this section of the assessment, what you will hear is not captioned. If you feel that you need an accommodation, please contact the San Diego Community College District offices of <a href="https://www.sdccd.edu/about/departments-and-offices/student-services-department/dsps/contact.aspx" target="_blank">Disability Support Programs and Services (DSPS)</a> at 619 388 6983 (voice), 619 550 3389 (videophone).</p>
 		<div id="countDown"></div>
 		<div class="sub-panel-listen">
@@ -328,11 +356,18 @@
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
-			<div class="options" data-id="listen">
+			<div class="options live-content" data-id="listen">
 				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
 					some of this video.</a><br />
 				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
+					clear.</a>
+			</div>
+			<div class="options practice-content" data-id="listen">
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
+					some of this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
 					clear.</a>
 			</div>
 		</div>
@@ -353,6 +388,13 @@ allowfullscreen></iframe> -->
 				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
 					clear.</a>
 			</div>
+			<div class="options practice-content" data-id="listen">
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
+					some of this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
+					clear.</a>
+			</div>
 		</div>
 		<div class="sub-panel-listen">
 			<!-- <p>E-30 Listen Sample</p> -->
@@ -369,6 +411,13 @@ allowfullscreen></iframe> -->
 				<a class="waves-effect waves-light btn next value stop" data-value="3" disabled>I understand
 					some of this video.</a><br />
 				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
+					clear.</a>
+			</div>
+			<div class="options practice-content" data-id="listen">
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
+					some of this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
 					clear.</a>
 			</div>
 		</div>
@@ -390,6 +439,13 @@ allowfullscreen></iframe> -->
 				<a class="waves-effect waves-light btn next value stop" data-value="5" disabled>I understand this
 					video. It is clear.</a>
 			</div>
+			<div class="options practice-content" data-id="listen">
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
+					some of this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
+					clear.</a>
+			</div>
 		</div>
 	</div>
 </div>
@@ -397,7 +453,11 @@ allowfullscreen></iframe> -->
 	<div class="panel-content full-width">
 <!--	<div id="apply"></div> -->
 		<p>Based on your responses we recommend the following courses:</p>
-		<div id="placement" class="row">
+		<p class="practice-content">
+			This is where you would receive your results.
+			<a href="">Start Over</a>
+		</p>
+		<div id="placement live-content" class="row">
 			<div class="col s12 m6">
 				<div id="recos">
 					<h3>All Courses</h3>
@@ -461,12 +521,12 @@ allowfullscreen></iframe> -->
 				</div>
 			</div>
 		</div>
-		<div class="next-steps">
+		<div class="next-steps live-content">
 			<!-- @TODO next steps go here-->
 			<p></p>
 
 		</div>
-		<div class="contact">
+		<div class="contact live-content">
 
 			<div id="caspioEmbeddedForm">
 				<!--
