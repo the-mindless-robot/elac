@@ -289,6 +289,16 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  for (let i = 0; i < practice_btns.length; i++) {
      practice_btns[i].addEventListener('click', (e) => {
          PANELS.practice = true;
+         const practiceContent = document.querySelectorAll('.practice-content');
+         const liveContent = document.querySelectorAll('.live-content');
+
+         for(const elem of practiceContent) {
+             elem.style.display = 'block';
+         }
+
+         for(const elem of liveContent) {
+             elem.style.display = 'none';
+         }
      });
  }
 
@@ -390,7 +400,9 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          console.log('EVAL!');
          setTimeout(function () {
              eval();
-             saveDataToCaspio();
+             if(!PANELS.practice) {
+                saveDataToCaspio();
+             }
              swapPanelRouter(index);
              scrollToPlacement();
              hideLoader();
@@ -699,12 +711,16 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function unlockBtns() {
      let panel = document.querySelector('.sub-panel-listen[data-index="'+ROUTER.ACTIVE_SUB_PANEL+'"]');
+     console.debug('practice?', PANELS.practice);
+     console.debug('live options', panel.querySelector('.options.live-content'));
+     console.debug('practice options', panel.querySelector('.options.practice-content'));
      let options = PANELS.practice ? panel.querySelector('.options.practice-content') : panel.querySelector('.options.live-content');
     //  let options = panel.querySelector('.options');
-     ROUTER.LISTEN_PANELS_VISITED.push(ROUTER.ACTIVE_SUB_PANEL);
+     console.debug('options', options);
+    ROUTER.LISTEN_PANELS_VISITED.push(ROUTER.ACTIVE_SUB_PANEL);
 
      let buttons = options.querySelectorAll('.btn');
-
+      console.debug('unlockBtns', options, buttons);
      for(let btn of buttons) {
          btn.removeAttribute('disabled');
      }

@@ -626,18 +626,6 @@ strong {
     top: 5px;
 }
 
-.contact {
-    display: flex;
-    justify-content: center;
-}
-
-.contact > * {
-    flex: 1;
-    border: 1px solid #f0f0f0;
-    text-align: center;
-    padding: 5px;
-}
-
 #apply {
     display: none;
     border-bottom: 2px solid #f0f0f0;
@@ -715,6 +703,17 @@ p.directions {
     line-height: 1.3;
 }
 
+.practice-content {
+    display: none;
+
+}
+
+.practice-content span {
+    text-decoration: underline;
+    font-weight: 600;
+    text-decoration-color: #fdb930;
+    font-style: italic;
+}
 
 
 /*

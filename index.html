@@ -10,6 +10,9 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<link rel="stylesheet" href="app.css">
 		<style>
+			div.caspio {
+				display: none;
+			}
 			div.cbSubmitButtonContainer {
 				display: none;
 			}
@@ -139,6 +142,9 @@
 	<div class="panel" data-area="reading">
 		<div class="panel-content">
 			<p class="directions">How would you describe your reading skills in English?</p>
+			<p class="practice-content">
+				This is just for <span>practice</span>.
+			</p>
 			<div class="options responsive" data-id="reading_lvl">
 				<a class="waves-effect waves-light btn next value setLevel help" data-value="1">Beginner</a>
 				<a class="waves-effect waves-light btn next value setLevel help" data-value="2">Intermediate</a>
@@ -154,7 +160,7 @@
 		<div class="panel-content">
 			<p class="directions">Read the following text and click the best option.</p>
 			<p class="practice-content">
-				This is just for practice.
+				This is just for <span>practice</span>.
 			</p>
 			<div class="sub-panel-reading">
 				<div class="sample-content" id="r-elac15">
@@ -324,7 +330,7 @@
 	<div class="panel-content">
 		<p class="directions">How would you describe your listening skills in English?</p>
 		<p class="practice-content">
-			This is just for practice.
+			This is just for <span>practice</span>.
 		</p>
 
 		<div class="options responsive" data-id="listen_lvl">
@@ -342,7 +348,7 @@
 	<div class="panel-content">
 		<p class="headline directions">Listen to the video and click the best option.</p>
 		<p class="practice-content">
-			This is just for practice.
+			This is just for <span>practice</span>.
 		</p>
 		<p class="disc">This section of ELAC Go! allows you to assess your skill in listening. Please note that for the purposes of this section of the assessment, what you will hear is not captioned. If you feel that you need an accommodation, please contact the San Diego Community College District offices of <a href="https://www.sdccd.edu/about/departments-and-offices/student-services-department/dsps/contact.aspx" target="_blank">Disability Support Programs and Services (DSPS)</a> at 619 388 6983 (voice), 619 550 3389 (videophone).</p>
 		<div id="countDown"></div>
@@ -381,7 +387,7 @@ allowfullscreen></iframe> -->
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
-			<div class="options" data-id="listen">
+			<div class="options live-content" data-id="listen">
 				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="2" disabled>I understand
 					some of this video.</a><br />
@@ -406,7 +412,7 @@ allowfullscreen></iframe> -->
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
-			<div class="options" data-id="listen">
+			<div class="options live-content" data-id="listen">
 				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="3" disabled>I understand
 					some of this video.</a><br />
@@ -432,7 +438,7 @@ allowfullscreen></iframe> -->
 allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
-			<div class="options" data-id="listen">
+			<div class="options live-content" data-id="listen">
 				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="4" disabled>I understand
 					some of this video.</a><br />
@@ -454,10 +460,10 @@ allowfullscreen></iframe> -->
 <!--	<div id="apply"></div> -->
 		<p>Based on your responses we recommend the following courses:</p>
 		<p class="practice-content">
-			This is where you would receive your results.
-			<a href="">Start Over</a>
+			This is where you would receive your <span>results</span>.<br/>
+			<a class="waves-effect waves-light btn" href="">Start Over</a>
 		</p>
-		<div id="placement live-content" class="row">
+		<div id="placement" class="row live-content">
 			<div class="col s12 m6">
 				<div id="recos">
 					<h3>All Courses</h3>
@@ -526,7 +532,7 @@ allowfullscreen></iframe> -->
 			<p></p>
 
 		</div>
-		<div class="contact live-content">
+		<div class="caspio">
 
 			<div id="caspioEmbeddedForm">
 				<!--
