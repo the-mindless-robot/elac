@@ -399,7 +399,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          showLoader();
          console.log('EVAL!');
          setTimeout(function () {
-             eval();
+             evalData();
              if(!PANELS.practice) {
                 saveDataToCaspio();
              }
@@ -801,7 +801,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  */
  //evaluation of data for course recommendations
 
- function eval() {
+ function evalData() {
      // convert selected values to numbers
      const readingScore = typeof PLACEMENT.reading == 'string' && PLACEMENT.reading.length > 0 ? PLACEMENT.reading : false;
      const listeningScore = typeof PLACEMENT.listen == 'string' && PLACEMENT.listen.length > 0 ? PLACEMENT.listen : false;
