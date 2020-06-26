@@ -401,6 +401,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          setTimeout(function () {
              evalData();
              if(!PANELS.practice) {
+                loadEvalForm();
                 saveDataToCaspio();
              }
              swapPanelRouter(index);
@@ -1215,52 +1216,88 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  // *_score -> computed score by logic based on user inputs -> *_score
 
  // in reality this should be done with a backend script
- function saveDataToCaspio() {
-     console.log('SAVE', PLACEMENT);
+  function saveDataToCaspio() {
      // saveField(value, nameOfFieldInCaspio)
      // user details
-     saveField(PLACEMENT.first, 'first');
-     saveField(PLACEMENT.last, 'last');
-     saveField(PLACEMENT.email, 'email');
-     saveField(PLACEMENT.csid, 'csid');
-     saveField(PLACEMENT.phone, 'phone');
-     if (PLACEMENT.campus.hasValues) {
-         saveField(PLACEMENT.campus.toString, 'campus');
-         saveObj(PLACEMENT.campus.obj, 'campus');
+     const ready = checkLoaded();
+
+     if(ready){
+        console.log('SAVE', ready, PLACEMENT);
+       submitCbForm();
+     } else {
+        window.setTimeout(()=>{
+            saveDataToCaspio();
+        }, 100);
      }
-     if (PLACEMENT.goals.hasValues) {
-         saveField(PLACEMENT.goals.toString, 'goals');
-         saveObj(PLACEMENT.goals.obj, 'goals');
-     }
-     // user selected scores and results
-     saveField(Number(PLACEMENT.listen_lvl), 'listening_self_selected');
-     saveField(Number(PLACEMENT.listen), 'listening_score');
-     saveField(PLACEMENT.listeningCourse, 'listening_course');
-     saveField(Number(PLACEMENT.reading_lvl), 'reading_self_selected');
-     saveField(Number(PLACEMENT.reading), 'reading_score');
-     saveField(PLACEMENT.readingCourse, 'reading_course');
-     // content shown to user
-     saveField(PLACEMENT.elac15R, 'r_elac15');
-     saveField(PLACEMENT.elac25R, 'r_elac25');
-     saveField(PLACEMENT.elac35R, 'r_elac35');
-     saveField(PLACEMENT.elac145R, 'r_elac145');
-     saveField(PLACEMENT.elac15L, 'l_elac15');
-     saveField(PLACEMENT.elac23L, 'l_elac23');
-     saveField(PLACEMENT.elac33L, 'l_elac33');
-     saveField(PLACEMENT.elac145L, 'l_elac145');
+ }
+
+function submitCbForm() {
+        console.log('submitting');
+        saveField(PLACEMENT.first, 'first');
+        saveField(PLACEMENT.last, 'last');
+        saveField(PLACEMENT.email, 'email');
+        saveField(PLACEMENT.csid, 'csid');
+        saveField(PLACEMENT.phone, 'phone');
+        if (PLACEMENT.campus.hasValues) {
+            saveField(PLACEMENT.campus.toString, 'campus');
+            saveObj(PLACEMENT.campus.obj, 'campus');
+        }
+        if (PLACEMENT.goals.hasValues) {
+            saveField(PLACEMENT.goals.toString, 'goals');
+            saveObj(PLACEMENT.goals.obj, 'goals');
+        }
+        // user selected scores and results
+        saveField(Number(PLACEMENT.listen_lvl), 'listening_self_selected');
+        saveField(Number(PLACEMENT.listen), 'listening_score');
+        saveField(PLACEMENT.listeningCourse, 'listening_course');
+        saveField(Number(PLACEMENT.reading_lvl), 'reading_self_selected');
+        saveField(Number(PLACEMENT.reading), 'reading_score');
+        saveField(PLACEMENT.readingCourse, 'reading_course');
+        saveField(PLACEMENT.level, 'level');
+        // content shown to user
+        saveField(PLACEMENT.elac15R, 'r_elac15');
+        saveField(PLACEMENT.elac25R, 'r_elac25');
+        saveField(PLACEMENT.elac35R, 'r_elac35');
+        saveField(PLACEMENT.elac145R, 'r_elac145');
+        saveField(PLACEMENT.elac15L, 'l_elac15');
+        saveField(PLACEMENT.elac23L, 'l_elac23');
+        saveField(PLACEMENT.elac33L, 'l_elac33');
+        saveField(PLACEMENT.elac145L, 'l_elac145');
 
 
 
-     let form = document.getElementById('caspioform');
-     form.target = "frame";
-     form.submit();
+        const form = document.getElementById('caspioform');
+        form.target = "frame";
+        form.submit();
+}
+
+function loadEvalForm() {
+
+    const container = document.getElementById('caspioEmbeddedForm');
+        const cbForm = document.createElement('script');
+        cbForm.setAttribute('src', 'https://c2eib679.caspio.com/dp/78aa4000bc7e40c1dc10469cb25c/emb');
+        container.appendChild(cbForm);
+      return;
+
+
 
  }
 
+ function checkLoaded() {
+
+        if(document.body.contains(document.getElementById('caspioform'))) {
+            console.log('form loaded');
+             return true;
+        }
+        console.log('not yet');
+        return false;
+ }
+
  function saveField(value, caspioFieldName) {
-     let fieldName = 'InsertRecord'+ caspioFieldName;
-    //  console.log(`${fieldName} : ${value}`);
-     document.getElementById(fieldName).value = value;
+
+    fieldName = 'InsertRecord'+ caspioFieldName;
+     console.log(`${fieldName} : ${value}`);
+    document.getElementById(fieldName).value = value;
  }
 
  function saveObj(obj, fieldNamePrefix) {
