@@ -23,6 +23,9 @@
 				transform-origin: 0px 100% !important;
 				top: -222px !important;
 			}
+			#de {
+				display: none;
+			}
 		</style>
 		<script src="js/youtube.js"></script>
 	</head>
@@ -68,7 +71,9 @@
 		<div class="panel" data-area="welcome">
 			<div class="panel-content">
 				<h2>Welcome!</h2>
-				<p class="sampleData">ELAC GO! is a self assessment tool that will help you determine your ELAC class(es). Please read and listen carefully, take your time, and answer the best way you can.</p>
+
+				<p class="sampleData">ELAC GO! is a self assessment tool that will help you determine your English Language Acquisition (ELAC) class(es). Please read and listen carefully, take your time, and answer the best way you can.</p>
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/uKoyJnqy4tM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 				<p class="sampleData">Please note that the listening section of the ELAC Go! assessment is not captioned. If you feel that you need an accommodation, please contact the San Diego Community College District offices of <a href="https://www.sdccd.edu/about/departments-and-offices/student-services-department/dsps/contact.aspx" target="_blank">Disability Support Programs and Services (DSPS)</a> at 619 388 6983 (voice), 619 550 3389 (videophone).</p>
 				<p class="sampleData">Please have your Student ID (CSID) ready.<br/>If you need a CSID - <a href="https://www.opencccapply.net/uPortal/f/u63l1s1000/normal/render.uP">Apply to SDCCD</a></p>
 
@@ -112,16 +117,16 @@
 				<div class="input-field col s6">
 					<input id="csid" type="text" />
 					<label for="csid" class="required">CSID<span class="req">*</span></label>
-					<a href="#">I don't know my CSID</a>
+					<!--<a href="#">I don't know my CSID</a>-->
 				</div>
 
 				<!-- campus -->
 				<div class="input-field col s12" role="group" aria-labelledby="campusList">
 					<p id="campusList">Which campus do you plan to take ELAC classes at?</p>
-					<select multiple id="campus">
-						<option value="" disabled>Select all that apply</option>
-						<option value="Mesa">San Diego Mesa College</option>
+					<select id="campus">
+						<option selected="selected" value="" disabled>Select all that apply</option>
 						<option value="City">San Diego City College</option>
+						<option value="Mesa">San Diego Mesa College</option>
 						<option value="Miramar">San Diego Miramar College</option>
 						<option value="undecided">I don't know</option>
 					</select>
@@ -216,14 +221,14 @@
 				</p>
 			</div>
 			<div class="options live-content" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn next value" data-value="0">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next-sub">I understand most of the reading</a>
 			</div>
 			<div class="options practice-content" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn next value" data-value="0">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand most of the reading</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -252,14 +257,14 @@
 				<p>(from Long Walk to Water by Linda Sue Park</p>
 			</div>
 			<div class="options live-content" data-id="reading">
-				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="2">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn prev-sub">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next-sub">I understand most of the reading</a>
 			</div>
 			<div class="options practice-content" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn next value" data-value="0">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand most of the reading</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -283,14 +288,14 @@
 				<p>(from Funny in Farsi by Firoozeh Dumas)</p>
 			</div>
 			<div class="options live-content" data-id="reading">
-				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="3">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next-sub">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn prev-sub">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="3">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next-sub">I understand most of the reading</a>
 			</div>
 			<div class="options practice-content" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn next value" data-value="0">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand most of the reading</a>
 			</div>
 		</div>
 		<div class="sub-panel-reading">
@@ -317,15 +322,15 @@
 				<p>(from Hotel on the Corner of Bitter and Sweet by Jamie Ford)</p>
 			</div>
 			<div class="options live-content" data-id="reading">
-				<a class="waves-effect waves-light btn prev-sub">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="4">I understand some of this reading.</a><br />
+				<a class="waves-effect waves-light btn prev-sub">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="4">I understand some of this reading</a><br />
 				<a class="waves-effect waves-light btn next value" data-value="5">I understand this reading. It is
 					clear.</a>
 			</div>
 			<div class="options practice-content" data-id="reading">
-				<a class="waves-effect waves-light btn next value" data-value="0">I don't understand this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading.</a><br />
-				<a class="waves-effect waves-light btn next value" data-value="2">I understand this reading. It is clear.</a>
+				<a class="waves-effect waves-light btn next value" data-value="0">I understand little of the reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="1">I understand some of this reading</a><br />
+				<a class="waves-effect waves-light btn next value" data-value="2">I understand most of the reading</a>
 			</div>
 		</div>
 	</div>
@@ -367,18 +372,16 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
 			<div class="options live-content" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand most of this video. </a>
 			</div>
 			<div class="options practice-content" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand most of this video. </a>
 			</div>
 		</div>
 		<div class="sub-panel-listen">
@@ -392,18 +395,16 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
 			<div class="options live-content" data-id="listen">
-				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn prev-sub stop" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="2" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand most of this video. </a>
 			</div>
 			<div class="options practice-content" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand most of this video. </a>
 			</div>
 		</div>
 		<div class="sub-panel-listen">
@@ -417,18 +418,16 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
 			<div class="options live-content" data-id="listen">
-				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn prev-sub stop" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="3" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next-sub stop" disabled>I understand most of this video. </a>
 			</div>
 			<div class="options practice-content" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand most of this video. </a>
 			</div>
 		</div>
 		<div class="sub-panel-listen">
@@ -443,18 +442,17 @@ allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 allowfullscreen></iframe> -->
 			</div>
 			<div class="options live-content" data-id="listen">
-				<a class="waves-effect waves-light btn prev-sub stop" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn prev-sub stop" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="4" disabled>I understand
-					some of this video.</a><br />
+					some of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="5" disabled>I understand this
 					video. It is clear.</a>
 			</div>
 			<div class="options practice-content" data-id="listen">
-				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I dont understand this video.</a><br />
+				<a class="waves-effect waves-light btn next value stop" data-value="0" disabled>I understand little of this video</a><br />
 				<a class="waves-effect waves-light btn next value stop" data-value="1" disabled>I understand
-					some of this video.</a><br />
-				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand this video. It is
-					clear.</a>
+					some of this video</a><br />
+				<a class="waves-effect waves-light btn next value stop"  data-value="2" disabled>I understand most of this video. </a>
 			</div>
 		</div>
 	</div>
@@ -463,6 +461,9 @@ allowfullscreen></iframe> -->
 	<div class="panel-content full-width">
 <!--	<div id="apply"></div> -->
 		<p>Based on your responses we recommend the following courses:</p>
+		<centeR>
+		<iframe width="560" height="315" src="https://www.youtube.com/embed/NN6xWei3vA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</centeR>
 		<p class="practice-content">
 			This is where you would receive your <span>results</span>.<br/>
 			<a class="waves-effect waves-light btn" href="">Start Over</a>
@@ -533,7 +534,45 @@ allowfullscreen></iframe> -->
 		</div>
 		<div class="next-steps live-content">
 			<!-- @TODO next steps go here-->
-			<p></p>
+			<h2>
+				What's next?
+			</h2>
+			<p class="sampleData"><a href="https://www.sdccd.edu/students/support-services/counseling.aspx" target="_blank">Make an appointment with a counselor at your campus</a> to create an education plan and decide which classes to register for.</p>
+			<p class="sampleData">If you think the recommended classes are too difficult (placement is too high), you can register for any ELAC classes below your level.</p>
+			<p class="sampleData">If you have questions or think the recommended classes are too easy (placement is too low), contact the ELAC Chair/Coordinator at your campus.</p>
+			<table style="text-valign: top;" class="stacktable large-only">
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <p>FOR English Language Acquisition (ELAC)</p>
+                                 </td>
+                                 <td>
+                                    <p>FOR ELAC Coordinator:</p>
+                                 </td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <ul>
+                                       <li>City: <a href="https://www.sdcity.edu/academics/schools-programs/arts-humanities-comms/english/elac.aspx">City College ELAC Program Website</a></li>
+                                       <li>Mesa: <a href="http://www.sdmesa.edu/academics/schools-departments/english/">Mesa College ELAC Program Website</a></li>
+                                       <li>Miramar: <a href="https://www.sdmiramar.edu/node/15642">Miramar College ELAC Program Website</a></li>
+                                    </ul>
+                                 </td>
+                                 <td>
+                                    <ul>
+                                       <li>City: <a href="mailto:jboots@sdccd.edu">Jennifer Boots</a></li>
+                                       <li>Mesa: <a href="mailto:csulliva@sdccd.edu">Chris Sullivan</a></li>
+                                       <li>Miramar: <a href="mailto:cjay@sdccd.edu">Carmen Carrasquillo Jay</a></li>
+                                    </ul>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+
+			<p class="sampleData">Welcome to the San Diego Community College District!</p>
+
+
+
 
 		</div>
 		<div class="caspio">
@@ -542,8 +581,11 @@ allowfullscreen></iframe> -->
 				<!--
 @TODO you will need to replace this with the caspio form that you create
 -->
-				<script type="text/javascript" src="https://c2eib679.caspio.com/dp/78aa4000717d03da5cd64aab9ceb/emb"></script>
-				<div class="cxkg"><a href="https://c2eib679.caspio.com/dp/78aa4000717d03da5cd64aab9ceb">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div>
+				<!--<script type="text/javascript" src="https://c2eib679.caspio.com/dp/78aa4000717d03da5cd64aab9ceb/emb"></script>
+				<div class="cxkg"><a href="https://c2eib679.caspio.com/dp/78aa4000717d03da5cd64aab9ceb">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div>-->
+				<script type="text/javascript" src="https://c0acb673.caspio.com/dp/9D676000717d03da5cd64aab9ceb/emb"></script>
+<div class="cxkg"><a href="https://c0acb673.caspio.com/dp/9D676000717d03da5cd64aab9ceb">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div>
+<div id="9D676000717d03da5cd64aab9ceb"><a href="https://www.caspio.com" target="_blank">Cloud Database</a> by Caspio</div>
 			</div>
 		</div>
 		<!-- testing only -->
@@ -595,7 +637,7 @@ allowfullscreen></iframe> -->
 		If you are confused or unsure of how to complete ELAC GO! please visit or contact your campus Assessment
 		Center. A staff member will guide you through the process.
 		</span></p>
-	<a href="#" target="_bank"><i class="material-icons">open_in_new</i>Assessment Center</a>
+	<a href="https://www.sdccd.edu/students/support-services/index.aspx" target="_bank"><i class="material-icons">open_in_new</i>Assessment Center</a>
 </div>
 
 
@@ -612,15 +654,15 @@ allowfullscreen></iframe> -->
 	//event trigger harcoded to the button
 	function help(e) {
 		console.log('help me.', e.target.parentElement.parentElement);
-		let btn = e.target.parentElement.parentElement;
+		var btn = e.target.parentElement.parentElement;
 		if (btn.classList.contains('active')) {
 			btn.classList.remove('active');
 		} else {
 			btn.classList.add('active');
 		}
 
-		const helpText = document.querySelector('.help-content');
-		const help = document.getElementById('help-container');
+		var helpText = document.querySelector('.help-content');
+		var help = document.getElementById('help-container');
 		if (help.classList.contains('open')) {
 			help.classList.remove('open');
 		} else {

@@ -715,6 +715,10 @@ p.directions {
     font-style: italic;
 }
 
+.imgSource {
+    display: block;
+}
+
 
 /*
 
