@@ -1118,9 +1118,18 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      } else {
          setUserValues(first, last, email, csid, phone, goals, campus);
          console.log('placement', PLACEMENT);
-         checkArea(ROUTER.NEXT_PANEL);
-         displayPanel(ROUTER.NEXT_PANEL);
+         checkIfUserExists();
+
+
      }
+ }
+
+ function checkIfUserExists() {
+     // submit capsio form
+
+     // if no error
+     checkArea(ROUTER.NEXT_PANEL);
+     displayPanel(ROUTER.NEXT_PANEL);
  }
 
  function displayErrors(errors) {
