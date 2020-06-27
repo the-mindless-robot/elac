@@ -1116,11 +1116,13 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      if (hasErrors) {
          console.log('fail', errors);
          displayErrors(errors);
+         window.scrollTo(0,0);
      } else {
+         clearErrors(errors);
          setUserValues(first, last, email, csid, phone, goals, campus);
          console.log('placement', PLACEMENT);
+         showLoader();
          checkIfUserExists();
-
 
      }
  }
@@ -1137,10 +1139,17 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function checkMe() {
      console.log('iframe loaded');
+     hideLoader();
+     const errors = {
+         "unique": true
+     };
      try {
         const iframe = document.querySelector('#empty iframe');
         const elem = iframe.contentWindow.document.getElementsByTagName('h1')[0];
-        console.log('highlight error');
+        console.log('highlight error', errors);
+        displayErrors(errors);
+        window.scrollTo(0,0);
+
      } catch(error){
          console.debug('ERRRRRRRR', error);
          console.log('success');

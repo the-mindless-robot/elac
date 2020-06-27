@@ -10,24 +10,7 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 		<link rel="stylesheet" href="css/app.css">
 		<style>
-			div.caspio {
-				display: none;
-				/* border: 1px solid black; */
-			}
-			div.cbSubmitButtonContainer {
-				display: none;
-			}
-			div#empty iframe{
-				display: none;
-				/* border: 1px solid red; */
-			}
-			ul.dropdown-content.select-dropdown.multiple-select-dropdown {
-				transform-origin: 0px 100% !important;
-				top: -222px !important;
-			}
-			#de {
-				display: none;
-			}
+
 		</style>
 		<script src="js/youtube.js"></script>
 	</head>
@@ -75,7 +58,9 @@
 				<h2>Welcome!</h2>
 
 				<p class="sampleData">ELAC GO! is a self assessment tool that will help you determine your English Language Acquisition (ELAC) class(es). Please read and listen carefully, take your time, and answer the best way you can.</p>
-				<iframe width="560" height="315" src="https://www.youtube.com/embed/uKoyJnqy4tM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<div class="responsive-video-container">
+				<iframe src="https://www.youtube.com/embed/uKoyJnqy4tM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
 				<p class="sampleData">Please note that the listening section of the ELAC Go! assessment is not captioned. If you feel that you need an accommodation, please contact the San Diego Community College District offices of <a href="https://www.sdccd.edu/about/departments-and-offices/student-services-department/dsps/contact.aspx" target="_blank">Disability Support Programs and Services (DSPS)</a> at 619 388 6983 (voice), 619 550 3389 (videophone).</p>
 				<p class="sampleData">Please have your Student ID (CSID) ready.<br/>If you need a CSID - <a href="https://www.opencccapply.net/uPortal/f/u63l1s1000/normal/render.uP">Apply to SDCCD</a></p>
 
@@ -98,6 +83,9 @@
 						<li id="e-last">Last name is required</li>
 						<li id="e-email">Please enter a valid email address</li>
 						<li id="e-csid">Please enter a valid CSID (10 digits)</li>
+						</li>
+						<li id="e-unique">The CSID you entered already exists in the system. You may only take the assessment once.</li>
+						</li>
 					</ul>
 				</div>
 				<div class="input-field col s6">
@@ -119,14 +107,13 @@
 				<div class="input-field col s6">
 					<input id="csid" type="text" />
 					<label for="csid" class="required">CSID<span class="req">*</span></label>
-					<!--<a href="#">I don't know my CSID</a>-->
 				</div>
 
 				<!-- campus -->
 				<div class="input-field col s12" role="group" aria-labelledby="campusList">
 					<p id="campusList">Which campus do you plan to take ELAC classes at?</p>
 					<select id="campus">
-						<option selected="selected" value="" disabled>Select all that apply</option>
+						<option selected="selected" value="" disabled>Select one</option>
 						<option value="City">San Diego City College</option>
 						<option value="Mesa">San Diego Mesa College</option>
 						<option value="Miramar">San Diego Miramar College</option>
@@ -464,9 +451,12 @@ allowfullscreen></iframe> -->
 	<div class="panel-content full-width">
 <!--	<div id="apply"></div> -->
 		<p>Based on your responses we recommend the following courses:</p>
-		<centeR>
-		<iframe width="560" height="315" src="https://www.youtube.com/embed/NN6xWei3vA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-			</centeR>
+		<div class="vid-container">
+			<div class="responsive-video-container">
+				<iframe width="560" height="315" src="https://www.youtube.com/embed/NN6xWei3vA0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+		</div>
+
 		<p class="practice-content">
 			This is where you would receive your <span>results</span>.<br/>
 			<a class="waves-effect waves-light btn" href="">Start Over</a>
