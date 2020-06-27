@@ -401,8 +401,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          setTimeout(function () {
              evalData();
              if(!PANELS.practice) {
-                loadEvalForm();
-                saveDataToCaspio();
+                buildForm('78aa4000bc7e40c1dc10469cb25c', 'evalForm');
+                saveDataToCaspio(true);
              }
              swapPanelRouter(index);
              scrollToPlacement();
@@ -1127,10 +1127,28 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function checkIfUserExists() {
      // submit capsio form
-
+     // load form from cb
+     buildForm('78aa4000999f09662a274e81baee', 'userForm');
+     saveDataToCaspio();
      // if no error
-     checkArea(ROUTER.NEXT_PANEL);
-     displayPanel(ROUTER.NEXT_PANEL);
+
+
+ }
+
+ function checkMe() {
+     console.log('iframe loaded');
+     try {
+        const iframe = document.querySelector('#empty iframe');
+        const elem = iframe.contentWindow.document.getElementsByTagName('h1')[0];
+        console.log('highlight error');
+     } catch(error){
+         console.debug('ERRRRRRRR', error);
+         console.log('success');
+         checkArea(ROUTER.NEXT_PANEL);
+         displayPanel(ROUTER.NEXT_PANEL);
+     }
+
+
  }
 
  function displayErrors(errors) {
@@ -1216,20 +1234,39 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  // *_score -> computed score by logic based on user inputs -> *_score
 
  // in reality this should be done with a backend script
-  function saveDataToCaspio() {
+
+
+ function saveDataToCaspio(eval = false) {
      // saveField(value, nameOfFieldInCaspio)
      // user details
+
      const ready = checkLoaded();
 
      if(ready){
         console.log('SAVE', ready, PLACEMENT);
-       submitCbForm();
+        if(eval) {
+            submitCbForm();
+        } else {
+            logUser();
+        }
      } else {
         window.setTimeout(()=>{
             saveDataToCaspio();
         }, 100);
      }
  }
+
+function logUser() {
+    console.log('checking user');
+    saveField(PLACEMENT.first, 'first');
+    saveField(PLACEMENT.last, 'last');
+    saveField(PLACEMENT.email, 'email');
+    saveField(PLACEMENT.csid, 'csid');
+    const form = document.getElementById('caspioform');
+    form.target = "frame";
+    form.submit();
+
+}
 
 function submitCbForm() {
         console.log('submitting');
@@ -1271,16 +1308,21 @@ function submitCbForm() {
         form.submit();
 }
 
-function loadEvalForm() {
 
-    const container = document.getElementById('caspioEmbeddedForm');
+
+function buildForm(id, name) {
+
+        const container = document.getElementById('caspioEmbeddedForm');
+        // clear container
+        container.innerHTML = '';
+        const cbContainer = document.createElement('div');
+        cbContainer.id = name;
         const cbForm = document.createElement('script');
-        cbForm.setAttribute('src', 'https://c2eib679.caspio.com/dp/78aa4000bc7e40c1dc10469cb25c/emb');
-        container.appendChild(cbForm);
-      return;
-
-
-
+        const src = 'https://c2eib679.caspio.com/dp/'+id+'/emb';
+        cbForm.setAttribute('src', src);
+        cbContainer.appendChild(cbForm);
+        container.appendChild(cbContainer);
+        return;
  }
 
  function checkLoaded() {

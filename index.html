@@ -11,14 +11,15 @@
 		<link rel="stylesheet" href="css/app.css">
 		<style>
 			div.caspio {
-				display: block;
+				display: none;
+				/* border: 1px solid black; */
 			}
 			div.cbSubmitButtonContainer {
-				display: block;
+				display: none;
 			}
 			div#empty iframe{
-				display: block;
-				border: 1px solid red;
+				display: none;
+				/* border: 1px solid red; */
 			}
 			ul.dropdown-content.select-dropdown.multiple-select-dropdown {
 				transform-origin: 0px 100% !important;
@@ -144,7 +145,8 @@
 					</select>
 				</div>
 			</div>
-
+			<!-- <script type="text/javascript" src="https://c2eib679.caspio.com/dp/78aa4000999f09662a274e81baee/emb"></script>
+<div class="cxkg"><a href="https://c2eib679.caspio.com/dp/78aa4000999f09662a274e81baee">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div> -->
 			<a class="waves-effect waves-light btn getValues">Start ELAC Go! <i
 																				class="material-icons right">arrow_forward</i></a>
 		</div>
@@ -608,7 +610,7 @@ allowfullscreen></iframe> -->
 	</div>
 </div>
 <div id="empty">
-	<iframe name="frame"></iframe>
+	<iframe onload="checkMe()" name="frame"></iframe>
 </div>
 <div id="loader">
 	<div class="loader-container">
