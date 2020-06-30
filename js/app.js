@@ -178,7 +178,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  var SELECTED_COURSE = "none";
 
  //wait time before youtube videos play
- const WAIT_TIME = 0.01;
+ const WAIT_TIME = Number(config.waitTime);
 
  //set starting area
  setActiveArea(ROUTER.AREA);
