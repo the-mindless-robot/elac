@@ -299,6 +299,10 @@ span.phone {
 
 }
 
+.course:focus {
+    color: var(--default);
+}
+
 .course h4 {
     font-weight: bold;
     padding: 0;

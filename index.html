@@ -30,7 +30,9 @@
 						role="button"
 						aria-label="Help"
 						aria-controls="help-content"
-						aria-expanded="false">
+						aria-owns="help-content"
+						aria-expanded="false"
+						aria-pressed="false">
 						<i class="material-icons" aria-hidden="true">help_outline</i>
 					</a>
 				</div>
@@ -463,7 +465,7 @@ allowfullscreen></iframe> -->
 		<p>Based on your responses we recommend the following courses:</p>
 		<p class="practice-content">
 			This is where you would receive your <span>results</span>.<br/>
-			<button class="waves-effect waves-light btn">Start Over</button>
+			<a href="" class="waves-effect waves-light btn">Start Over</a>
 		</p>
 		<div id="placement" class="row live-content">
 			<div class="col s12 m6">
@@ -471,8 +473,10 @@ allowfullscreen></iframe> -->
 					<h3>All ELAC Courses</h3>
 					<div class="flex" data-lvl="1">
 						<div id="ELAC15" class="course" role="button" tabindex="0"
-						aria-labelledby="ELAC15-title"
-						aria-describedby="ELAC15-desc">
+							aria-labelledby="ELAC15-title"
+							aria-controls="selected"
+							aria-expanded="false"
+							aria-selected="false">
 							<h4 id="ELAC15-title">ELAC 15</h4>
 							<p id="ELAC15-desc">Introduction to English Literacy &amp; Communication</p>
 						</div>
@@ -480,14 +484,18 @@ allowfullscreen></iframe> -->
 					<div class="flex" data-lvl="2">
 						<div class="row-flex">
 							<div id="ELAC23" class="course" role="button" tabindex="0"
-							aria-labelledby="ELAC23-title"
-						aria-describedby="ELAC23-desc">
+								aria-labelledby="ELAC23-title"
+								aria-controls="selected"
+								aria-expanded="false"
+								aria-selected="false">
 								<h4 id="ELAC23-title">ELAC 23</h4>
 								<p id="ELAC23-desc">Academic Listening &amp; Speaking I</p>
 							</div>
 							<div id="ELAC25" class="course" role="button" tabindex="0"
-							aria-labelledby="ELAC25-title"
-						aria-describedby="ELAC25-desc">
+								aria-labelledby="ELAC25-title"
+								aria-controls="selected"
+								aria-expanded="false"
+								aria-selected="false">
 								<h4 id="ELAC25-title">ELAC 25</h4>
 								<p id="ELAC25-desc">Integrated Reading, Writing, Grammar I</p>
 							</div>
@@ -496,14 +504,18 @@ allowfullscreen></iframe> -->
 					<div class="flex" data-lvl="3">
 						<div class="row-flex">
 							<div id="ELAC33" class="course" role="button" tabindex="0"
-							aria-labelledby="ELAC33-title"
-						aria-describedby="ELAC33-desc">
+								aria-labelledby="ELAC33-title"
+								aria-controls="selected"
+								aria-expanded="false"
+								aria-selected="false">
 								<h4 id="ELAC33-title">ELAC 33</h4>
 								<p id="ELAC33-desc">Academic Listening &amp; Speaking II</p>
 							</div>
 							<div id="ELAC35" class="course" role="button" tabindex="0"
-							aria-labelledby="ELAC35-title"
-						aria-describedby="ELAC35-desc">
+								aria-labelledby="ELAC35-title"
+								aria-controls="selected"
+								aria-expanded="false"
+								aria-selected="false">
 								<h4 id="ELAC35-title">ELAC 35</h4>
 								<p id="ELAC35-desc">Integrated Reading, Writing, Grammar II</p>
 							</div>
@@ -511,8 +523,10 @@ allowfullscreen></iframe> -->
 					</div>
 					<div class="flex" data-lvl="4">
 						<div id="ELAC145" class="course" role="button" tabindex="0"
-						aria-labelledby="ELAC145-title"
-						aria-describedby="ELAC145-desc">
+							aria-labelledby="ELAC145-title"
+							aria-controls="selected"
+							aria-expanded="false"
+							aria-selected="false">
 							<h4 id="ELAC145-title">ELAC 145</h4>
 							<p id="ELAC145-desc">Integrated Reading, Writing, Grammar III</p>
 						</div>
@@ -520,7 +534,9 @@ allowfullscreen></iframe> -->
 					<div class="flex" data-lvl="5">
 						<div id="PLA" class="course" role="button" tabindex="0"
 							aria-labelledby="PA-title"
-							aria-describedby="PA-desc">
+							aria-controls="selected"
+							aria-expanded="false"
+							aria-selected="false">
 							<h4 id="PA-title">Placement Assistant</h4>
 							<p id="PA-desc">English Reading/Writing Assessment</p>
 						</div>
@@ -531,7 +547,7 @@ allowfullscreen></iframe> -->
 				<!-- placeholders for course details -->
 				<div id="details">
 					<h3>Course Details</h3>
-					<div id="selected">
+					<div id="selected" aria-hidden="true">
 
 
 					</div>
@@ -666,9 +682,11 @@ allowfullscreen></iframe> -->
 		if (btn.classList.contains('active')) {
 			btn.classList.remove('active');
 			control.setAttribute('aria-expanded', 'false');
+			control.setAttribute('aria-pressed', 'false');
 		} else {
 			btn.classList.add('active');
 			control.setAttribute('aria-expanded', 'true');
+			control.setAttribute('aria-pressed', 'true');
 		}
 
 		var helpText = document.getElementById('help-content');

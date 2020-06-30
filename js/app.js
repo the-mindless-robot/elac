@@ -1002,13 +1002,20 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function buildClearBtn() {
      return `
-     <a id="clearCourse" class="btn-floating btn-large waves-effect waves-light red" onClick="clearCourse()">
-         <i class="material-icons">close</i>
+     <a id="clearCourse" class="btn-floating btn-large waves-effect waves-light red" onClick="clearCourse()"
+         role="button"
+         tabindex="0"
+         aria-label="close selected course"
+         aria-controls="selected"
+         aria-expanded="true">
+         <i class="material-icons" aria-hidden="true">close</i>
      </a>`;
  }
 
  function addCourse(courseNode) {
-     document.getElementById('selected').appendChild(courseNode);
+     const selected = document.getElementById('selected');
+     selected.appendChild(courseNode);
+     selected.setAttribute('aria-hidden', 'false');
  }
 
  function addReco(courseNode) {
@@ -1024,7 +1031,11 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function flagSelected(id) {
-     document.getElementById(id).classList.add('selected-course');
+     const courseBtn = document.getElementById(id);
+     courseBtn.classList.add('selected-course');
+     courseBtn.setAttribute('aria-expanded', 'true');
+     courseBtn.setAttribute('aria-selected', 'true');
+     courseBtn.setAttribute('aria-owns', 'selected');
      SELECTED_COURSE = id;
  }
 
@@ -1039,12 +1050,18 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function clearSelected() {
      if (SELECTED_COURSE != "none") {
-         document.getElementById(SELECTED_COURSE).classList.remove('selected-course');
+         const courseBtn = document.getElementById(SELECTED_COURSE);
+         courseBtn.classList.remove('selected-course');
+         courseBtn.setAttribute('aria-expanded', 'false');
+         courseBtn.setAttribute('aria-selected', 'false');
+         courseBtn.removeAttribute('aria-owns');
      }
  }
 
  function clearDetails() {
-     document.getElementById('selected').innerHTML = "";
+     const selected = document.getElementById('selected');
+     selected.innerHTML = "";
+     selected.setAttribute('aria-hidden', 'true');
  }
 
 
