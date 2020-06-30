@@ -26,8 +26,12 @@
 						(ELAC)</span></span></p>
 				</div>
 				<div class="flex-help">
-					<a id="help-btn" onclick="help(event)" href="#">
-						<i class="material-icons">help_outline</i>
+					<a id="help-btn" onclick="help(event)" href="#"
+						role="button"
+						aria-label="Help"
+						aria-controls="help-content"
+						aria-expanded="false">
+						<i class="material-icons" aria-hidden="true">help_outline</i>
 					</a>
 				</div>
 			</div>
@@ -459,52 +463,66 @@ allowfullscreen></iframe> -->
 		<p>Based on your responses we recommend the following courses:</p>
 		<p class="practice-content">
 			This is where you would receive your <span>results</span>.<br/>
-			<a class="waves-effect waves-light btn" href="">Start Over</a>
+			<button class="waves-effect waves-light btn">Start Over</button>
 		</p>
 		<div id="placement" class="row live-content">
 			<div class="col s12 m6">
 				<div id="recos">
-					<h3>All Courses</h3>
+					<h3>All ELAC Courses</h3>
 					<div class="flex" data-lvl="1">
-						<div id="ELAC15" class="course">
-							<h4>ELAC 15</h4>
-							<p>Introduction to English Literacy &amp; Communication</p>
+						<div id="ELAC15" class="course" role="button" tabindex="0"
+						aria-labelledby="ELAC15-title"
+						aria-describedby="ELAC15-desc">
+							<h4 id="ELAC15-title">ELAC 15</h4>
+							<p id="ELAC15-desc">Introduction to English Literacy &amp; Communication</p>
 						</div>
 					</div>
 					<div class="flex" data-lvl="2">
 						<div class="row-flex">
-							<div id="ELAC23" class="course">
-								<h4>ELAC 23</h4>
-								<p>Academic Listening &amp; Speaking I</p>
+							<div id="ELAC23" class="course" role="button" tabindex="0"
+							aria-labelledby="ELAC23-title"
+						aria-describedby="ELAC23-desc">
+								<h4 id="ELAC23-title">ELAC 23</h4>
+								<p id="ELAC23-desc">Academic Listening &amp; Speaking I</p>
 							</div>
-							<div id="ELAC25" class="course">
-								<h4>ELAC 25</h4>
-								<p>Integrated Reading, Writing, Grammar I</p>
+							<div id="ELAC25" class="course" role="button" tabindex="0"
+							aria-labelledby="ELAC25-title"
+						aria-describedby="ELAC25-desc">
+								<h4 id="ELAC25-title">ELAC 25</h4>
+								<p id="ELAC25-desc">Integrated Reading, Writing, Grammar I</p>
 							</div>
 						</div>
 					</div>
 					<div class="flex" data-lvl="3">
 						<div class="row-flex">
-							<div id="ELAC33" class="course">
-								<h4>ELAC 33</h4>
-								<p>Academic Listening &amp; Speaking II</p>
+							<div id="ELAC33" class="course" role="button" tabindex="0"
+							aria-labelledby="ELAC33-title"
+						aria-describedby="ELAC33-desc">
+								<h4 id="ELAC33-title">ELAC 33</h4>
+								<p id="ELAC33-desc">Academic Listening &amp; Speaking II</p>
 							</div>
-							<div id="ELAC35" class="course">
-								<h4>ELAC 35</h4>
-								<p>Integrated Reading, Writing, Grammar II</p>
+							<div id="ELAC35" class="course" role="button" tabindex="0"
+							aria-labelledby="ELAC35-title"
+						aria-describedby="ELAC35-desc">
+								<h4 id="ELAC35-title">ELAC 35</h4>
+								<p id="ELAC35-desc">Integrated Reading, Writing, Grammar II</p>
 							</div>
 						</div>
 					</div>
 					<div class="flex" data-lvl="4">
-						<div id="ELAC145" class="course">
-							<h4>ELAC 145</h4>
-							<p>Integrated Reading, Writing, Grammar III</p>
+						<div id="ELAC145" class="course" role="button" tabindex="0"
+						aria-labelledby="ELAC145-title"
+						aria-describedby="ELAC145-desc">
+							<h4 id="ELAC145-title">ELAC 145</h4>
+							<p id="ELAC145-desc">Integrated Reading, Writing, Grammar III</p>
 						</div>
 					</div>
 					<div class="flex" data-lvl="5">
-						<div id="PLA" class="course">
-							<h4>Placement Assistant</h4>
-							<p>English Reading/Writing Assessment</p>
+						<div id="PLA" class="course" role="button" tabindex="0"
+							aria-labelledby="PA-title"
+							aria-describedby="PA-desc">
+							<h4 id="PA-title">Placement Assistant</h4>
+							<p id="PA-desc">English Reading/Writing Assessment</p>
 						</div>
 					</div>
 				</div>
@@ -572,20 +590,11 @@ allowfullscreen></iframe> -->
 
 			<div id="caspioEmbeddedForm">
 
-				<!--
-@TODO you will need to replace this with the caspio form that you create
--->
-<!-- sdccd form-->
-<!-- <script type="text/javascript" src="https://c0acb673.caspio.com/dp/9D676000717d03da5cd64aab9ceb/emb"></script>
-<div class="cxkg"><a href="https://c0acb673.caspio.com/dp/9D676000717d03da5cd64aab9ceb">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div>
-<div id="9D676000717d03da5cd64aab9ceb"><a href="https://www.caspio.com" target="_blank">Cloud Database</a> by Caspio</div> -->
 
-<!-- <script type="text/javascript" src="https://c2eib679.caspio.com/dp/78aa4000bc7e40c1dc10469cb25c/emb"></script> -->
-<!-- <div class="cxkg"><a href="https://c2eib679.caspio.com/dp/78aa4000bc7e40c1dc10469cb25c">Click here</a> to load this Caspio <a href="http://www.caspio.com" target="_blank" title="Cloud Database">Cloud Database</a></div> -->
 			</div>
 		</div>
 		<!-- testing only -->
-		<div class="user-values">
+		<div class="user-values" aria-hidden="true">
 			TESTING ONLY<br />
 			User selected values:<br />
 			READING: <span id="reading"></span>
@@ -599,10 +608,10 @@ allowfullscreen></iframe> -->
 		</div>
 	</div>
 </div>
-<div id="empty">
+<div id="empty" aria-hidden="true">
 	<iframe onload="checkMe()" name="frame"></iframe>
 </div>
-<div id="loader">
+<div id="loader" aria-hidden="true">
 	<div class="loader-container">
 		<div class="preloader-wrapper big active">
 			<div class="spinner-layer spinner-blue-only">
@@ -621,19 +630,21 @@ allowfullscreen></iframe> -->
 
 </div>
 <!-- text for help container -->
-<div id="help-container">
+<div id="help-container" aria-hidden="true">
 	<div class="help-wrapper">
 
 	</div>
 
 </div>
-<div class="help-content">
+<div id="help-content" class="help-content" aria-hidden="true">
 	<h4>Need Help?</h4>
 	<p><span>
 		If you are confused or unsure of how to complete ELAC GO! please visit or contact your campus Assessment
 		Center. A staff member will guide you through the process.
 		</span></p>
-	<a href="https://www.sdccd.edu/students/support-services/index.aspx" target="_bank"><i class="material-icons">open_in_new</i>Assessment Center</a>
+	<a href="https://www.sdccd.edu/students/support-services/index.aspx" target="_bank" aria-label="View assessment center contact information for all three campuses">
+		<i class="material-icons" aria-hidden="true">open_in_new</i>
+		Assessment Center</a>
 </div>
 
 
@@ -649,20 +660,25 @@ allowfullscreen></iframe> -->
 
 	//event trigger harcoded to the button
 	function help(e) {
-		console.log('help me.', e.target.parentElement.parentElement);
+		console.log('help me.', e.target.parentElement);
 		var btn = e.target.parentElement.parentElement;
+		var control = e.target.parentElement;
 		if (btn.classList.contains('active')) {
 			btn.classList.remove('active');
+			control.setAttribute('aria-expanded', 'false');
 		} else {
 			btn.classList.add('active');
+			control.setAttribute('aria-expanded', 'true');
 		}
 
-		var helpText = document.querySelector('.help-content');
+		var helpText = document.getElementById('help-content');
 		var help = document.getElementById('help-container');
 		if (help.classList.contains('open')) {
 			help.classList.remove('open');
+			helpText.setAttribute('aria-hidden', 'true');
 		} else {
 			help.classList.add('open');
+			helpText.setAttribute('aria-hidden', 'false');
 		}
 	}
 </script>
