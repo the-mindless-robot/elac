@@ -401,7 +401,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          setTimeout(function () {
              evalData();
              if(!PANELS.practice) {
-                buildForm('78aa4000bc7e40c1dc10469cb25c', 'evalForm');
+                buildForm(config.evalForm, 'evalForm');
                 saveDataToCaspio(true);
              }
              swapPanelRouter(index);
@@ -1130,7 +1130,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  function checkIfUserExists() {
      // submit capsio form
      // load form from cb
-     buildForm('78aa4000999f09662a274e81baee', 'userForm');
+     buildForm(config.userForm, 'userForm');
      saveDataToCaspio();
      // if no error
 
