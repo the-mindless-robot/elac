@@ -1260,7 +1260,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
         }
      } else {
         window.setTimeout(()=>{
-            saveDataToCaspio();
+            saveDataToCaspio(eval);
         }, 100);
      }
  }
