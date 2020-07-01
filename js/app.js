@@ -21,11 +21,12 @@ d::::::ddddd::::::dda::::a    a:::::a      t::::::tttt:::::ta::::a    a:::::a
    */
  //data values used in app
 
- let SAMPLE_DATA;
- const sampleDataJSON = getData();
- sampleDataJSON.then((result) => {
-     SAMPLE_DATA = result;
- });
+ let SAMPLE_DATA = null;
+//  const sampleDataJSON = getData();
+//  sampleDataJSON.then((result) => {
+//      SAMPLE_DATA = result;
+//      ELAC_DATA.reading = true;
+//  });
  async function getData() {
      try {
          const response = await fetch('data.json');
@@ -59,11 +60,11 @@ function buildVideoList(sheetData) {
 
 const videoList = new GoogleSheet(config.sheet, 2);
 let listeningVideos = null;
-videoList.load(buildVideoList).then(videos => {
-    console.log('videos', videos);
-    listeningVideos = videos;
-    loadYoutubeAPI();
-});
+// videoList.load(buildVideoList).then(videos => {
+//     console.log('videos', videos);
+//     listeningVideos = videos;
+//     loadYoutubeAPI();
+// });
 
 function buildLogicRules(sheetData) {
     // console.log('sheetData', sheetData);
@@ -98,9 +99,39 @@ function removeSpaces(string) {
 //load and parse elac logic google sheet in the background
 const elacLogic = new GoogleSheet(config.sheet);
 let logicRules = null;
-elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
+// elacLogic.load(buildLogicRules).then(logic => {
+//     logicRules = logic
+//     ELAC_DATA.logic = true;
+// });
 
- /*
+function loadAllData() {
+
+    if(SAMPLE_DATA == null) {
+        const sampleDataJSON = getData();
+        sampleDataJSON.then((result) => {
+            SAMPLE_DATA = result;
+        });
+    }
+    if(listeningVideos == null) {
+        videoList.load(buildVideoList).then(videos => {
+            console.log('videos', videos);
+            listeningVideos = videos;
+            loadYoutubeAPI();
+        });
+    }
+    if(logicRules == null) {
+        elacLogic.load(buildLogicRules).then(logic => {
+            logicRules = logic
+            ELAC_DATA.logic = true;
+        });
+    }
+}
+loadAllData();
+
+
+
+
+/*
 
 
                                                tttt
@@ -289,7 +320,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  let practice_btns = document.getElementsByClassName('practice');
  for (let i = 0; i < practice_btns.length; i++) {
      practice_btns[i].addEventListener('click', (e) => {
-         PANELS.practice = true;
+
+        PANELS.practice = true;
          const practiceContent = document.querySelectorAll('.practice-content');
          const liveContent = document.querySelectorAll('.live-content');
 
@@ -970,9 +1002,9 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      if (reco) {
          addReco(courseContainer);
      } else {
-         addCourse(courseContainer);
          addClearBtn();
-         setFocus('clearCourse');
+         addCourse(courseContainer);
+         setTimeout(setFocus('clearCourse'), 0);
      }
  }
 
@@ -1047,7 +1079,8 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
             // window.setTimeout(()=>{
             //     document.getElementById(focusTarget).focus();
             // }, 20)
-            document.getElementById(focusTarget).focus();
+            setTimeout(()=>{document.getElementById(focusTarget).focus()},50);
+            console.log('set focus');
 
          }
      }
@@ -1090,7 +1123,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          courseBtn.setAttribute('aria-expanded', 'false');
          courseBtn.setAttribute('aria-selected', 'false');
          courseBtn.removeAttribute('aria-owns');
-         setFocus("ELAC15");
+         setTimeout(setFocus('ELAC15'), 0);
      }
  }
 
