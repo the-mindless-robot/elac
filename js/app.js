@@ -83,7 +83,7 @@ function buildLogicRules(sheetData) {
         // add value
         logic[readingKey][listeningKey] = {level, readingCourse, listeningCourse};
     }
-    console.log('logic', logic);
+    // console.log('logic', logic);
     return logic;
 }
 
@@ -114,7 +114,7 @@ function loadAllData() {
     }
     if(listeningVideos == null) {
         videoList.load(buildVideoList).then(videos => {
-            console.log('videos', videos);
+            // console.log('videos', videos);
             listeningVideos = videos;
             loadYoutubeAPI();
         });
@@ -987,7 +987,7 @@ loadAllData();
      coursesBtns[i].addEventListener('keydown', (e) => {
         if(e.code == 'Space' || e.code == 'Enter') {
             e.preventDefault();
-            console.log('action');
+            // console.log('action');
 
             let course_id = getCourseId(e.target);
             handleCourseEvent(course_id)
@@ -998,7 +998,7 @@ loadAllData();
  function handleCourseEvent(course_id) {
 
     const isSelected = hasClass(course_id, 'selected-course');
-    console.log('course id', course_id, isSelected);
+    // console.log('course id', course_id, isSelected);
     reset();
 
     if(!isSelected) {
@@ -1083,7 +1083,7 @@ loadAllData();
  }
 
  function handleCloseEvent(e) {
-     console.log('a11y', e.code);
+    //  console.log('a11y', e.code);
     if(e.code == 'Space' || e.code == 'Enter') {
         e.preventDefault();
         clearCourse();
