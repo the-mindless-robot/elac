@@ -171,6 +171,7 @@
 
 .options {
     white-space: nowrap;
+    padding: 15px 0;
 }
 
 .btn {
@@ -752,6 +753,10 @@ div.caspio {
 div.cbSubmitButtonContainer {
     display: none;
 }
+div#empty {
+    display: none;
+}
+
 div#empty iframe{
     display: none;
     /* border: 1px solid red; */

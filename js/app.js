@@ -956,8 +956,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
     if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
         showCourseDetails(course_id);
-    } else {
-        reset();
     }
  }
 
@@ -973,6 +971,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      } else {
          addCourse(courseContainer);
          addClearBtn();
+         setFocus('clearCourse');
      }
  }
 
@@ -1030,7 +1029,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      console.log('a11y', e.code);
     if(e.code == 'Space' || e.code == 'Enter') {
         e.preventDefault();
-        console.log('action');
         clearCourse();
     }
  }
@@ -1039,6 +1037,19 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      const selected = document.getElementById('selected');
      selected.appendChild(courseNode);
      selected.setAttribute('aria-hidden', 'false');
+ }
+
+ function setFocus(focusTarget = false) {
+    console.log('focusTarget', focusTarget);
+    if(focusTarget) {
+         if(document.getElementById(focusTarget) == 'object') {
+            // window.setTimeout(()=>{
+            //     document.getElementById(focusTarget).focus();
+            // }, 20)
+            document.getElementById(focusTarget).focus();
+
+         }
+     }
  }
 
  function addReco(courseNode) {
@@ -1078,7 +1089,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          courseBtn.setAttribute('aria-expanded', 'false');
          courseBtn.setAttribute('aria-selected', 'false');
          courseBtn.removeAttribute('aria-owns');
-         SELECTED_COURSE = 'none';
+         setFocus("ELAC15");
      }
  }
 
@@ -1088,34 +1099,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      selected.setAttribute('aria-hidden', 'true');
  }
 
-/*
-
-
-                    1111111     1111111
-                   1::::::1    1::::::1
-                  1:::::::1   1:::::::1
-                  111:::::1   111:::::1
-  aaaaaaaaaaaaa      1::::1      1::::1yyyyyyy           yyyyyyy
-  a::::::::::::a     1::::1      1::::1 y:::::y         y:::::y
-  aaaaaaaaa:::::a    1::::1      1::::1  y:::::y       y:::::y
-           a::::a    1::::l      1::::l   y:::::y     y:::::y
-    aaaaaaa:::::a    1::::l      1::::l    y:::::y   y:::::y
-  aa::::::::::::a    1::::l      1::::l     y:::::y y:::::y
- a::::aaaa::::::a    1::::l      1::::l      y:::::y:::::y
-a::::a    a:::::a    1::::l      1::::l       y:::::::::y
-a::::a    a:::::a 111::::::111111::::::111     y:::::::y
-a:::::aaaa::::::a 1::::::::::11::::::::::1      y:::::y
- a::::::::::aa:::a1::::::::::11::::::::::1     y:::::y
-  aaaaaaaaaa  aaaa111111111111111111111111    y:::::y
-                                             y:::::y
-                                            y:::::y
-                                           y:::::y
-                                          y:::::y
-                                         yyyyyyy
-
-*/
-
-// catch [enter] and [key] events for focused "buttons"
 
 
  /*
