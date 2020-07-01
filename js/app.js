@@ -935,35 +935,31 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  for (let i = 0; i < coursesBtns.length; i++) {
      coursesBtns[i].addEventListener('click', (e) => {
          reset();
-
          let course_id = getCourseId(e.target);
-         flagSelected(course_id);
-
-         if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
-             showCourseDetails(course_id);
-         } else {
-             reset();
-         }
+         handleCourseEvent(course_id);
      });
 
      coursesBtns[i].addEventListener('keydown', (e) => {
-        console.log('a11y', `${e.code} - ${e.target}`);
         if(e.code == 'Space' || e.code == 'Enter') {
+            e.preventDefault();
             console.log('action');
             reset();
-
             let course_id = getCourseId(e.target);
-            console.log('course id', course_id);
-            flagSelected(course_id);
-
-            if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
-                showCourseDetails(course_id);
-            } else {
-                reset();
-            }
+            handleCourseEvent(course_id)
         }
     });
  };
+
+ function handleCourseEvent(course_id) {
+    console.log('course id', course_id);
+    flagSelected(course_id);
+
+    if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
+        showCourseDetails(course_id);
+    } else {
+        reset();
+    }
+ }
 
  function showCourseDetails(course, reco = false) {
 
@@ -1020,7 +1016,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function buildClearBtn() {
      return `
-     <a id="clearCourse" class="btn-floating btn-large waves-effect waves-light red" onClick="clearCourse()"
+     <a id="clearCourse" class="btn-floating btn-large waves-effect waves-light red" onkeydown="handleCloseEvent(event)" onClick="clearCourse()"
          role="button"
          tabindex="0"
          aria-label="close selected course"
@@ -1028,6 +1024,15 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          aria-expanded="true">
          <i class="material-icons" aria-hidden="true">close</i>
      </a>`;
+ }
+
+ function handleCloseEvent(e) {
+     console.log('a11y', e.code);
+    if(e.code == 'Space' || e.code == 'Enter') {
+        e.preventDefault();
+        console.log('action');
+        clearCourse();
+    }
  }
 
  function addCourse(courseNode) {
@@ -1073,6 +1078,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          courseBtn.setAttribute('aria-expanded', 'false');
          courseBtn.setAttribute('aria-selected', 'false');
          courseBtn.removeAttribute('aria-owns');
+         SELECTED_COURSE = 'none';
      }
  }
 
