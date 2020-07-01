@@ -122,7 +122,6 @@ function loadAllData() {
     if(logicRules == null) {
         elacLogic.load(buildLogicRules).then(logic => {
             logicRules = logic
-            ELAC_DATA.logic = true;
         });
     }
 }
@@ -967,7 +966,7 @@ loadAllData();
  let coursesBtns = document.getElementsByClassName('course');
  for (let i = 0; i < coursesBtns.length; i++) {
      coursesBtns[i].addEventListener('click', (e) => {
-         reset();
+
          let course_id = getCourseId(e.target);
          handleCourseEvent(course_id);
      });
@@ -976,7 +975,7 @@ loadAllData();
         if(e.code == 'Space' || e.code == 'Enter') {
             e.preventDefault();
             console.log('action');
-            reset();
+
             let course_id = getCourseId(e.target);
             handleCourseEvent(course_id)
         }
@@ -984,13 +983,24 @@ loadAllData();
  };
 
  function handleCourseEvent(course_id) {
-    console.log('course id', course_id);
-    flagSelected(course_id);
 
-    if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
-        showCourseDetails(course_id);
+    const isSelected = hasClass(course_id, 'selected-course');
+    console.log('course id', course_id, isSelected);
+    reset();
+
+    if(!isSelected) {
+        if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
+            flagSelected(course_id);
+            showCourseDetails(course_id);
+        }
     }
+
  }
+
+ function hasClass(elem_id, value) {
+    return document.getElementById(elem_id).classList.contains(value);
+ }
+
 
  function showCourseDetails(course, reco = false) {
 

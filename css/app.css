@@ -340,35 +340,53 @@ a#clearCourse:focus {
     outline-width: 2px;
 }
 
-.flex[data-lvl="1"] .active,
+.flex[data-lvl="1"] .active {
+    background: var(--lvl1-bg-color) !important;
+    border-color: var(--lvl1-bg-color) !important;
+}
+
 .flex[data-lvl="1"] .course:hover,
 .flex[data-lvl="1"] .selected {
     background: var(--lvl1-bg-color);
     border-color: var(--lvl1-bg-color);
 }
 
-.flex[data-lvl="2"] .active,
+.flex[data-lvl="2"] .active {
+    background: var(--lvl2-bg-color) !important;
+    border-color: var(--lvl2-bg-color) !important;
+}
+
 .flex[data-lvl="2"] .course:hover,
 .flex[data-lvl="2"] .selected {
     background: var(--lvl2-bg-color);
     border-color: var(--lvl2-bg-color);
 }
 
-.flex[data-lvl="3"] .active,
+.flex[data-lvl="3"] .active {
+    background: var(--lvl3-bg-color) !important;
+    border-color: var(--lvl3-bg-color) !important;
+}
+
 .flex[data-lvl="3"] .course:hover,
 .flex[data-lvl="3"] .selected {
     background: var(--lvl3-bg-color);
     border-color: var(--lvl3-bg-color);
 }
 
-.flex[data-lvl="4"] .active,
+.flex[data-lvl="4"] .active {
+    background: var(--lvl4-bg-color) !important;
+    border-color: var(--lvl4-bg-color) !important;
+}
 .flex[data-lvl="4"] .course:hover,
 .flex[data-lvl="4"] .selected {
     background: var(--lvl4-bg-color);
     border-color: var(--lvl4-bg-color);
 }
 
-.flex[data-lvl="5"] .active,
+.flex[data-lvl="5"] .active {
+    background: var(--lvl5-bg-color) !important;
+    border-color: var(--lvl5-bg-color) !important;
+}
 .flex[data-lvl="5"] .course:hover,
 .flex[data-lvl="5"] .selected {
     background: var(--lvl5-bg-color);
