@@ -143,6 +143,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  PANELS.READING_PANELS = document.getElementsByClassName('sub-panel-reading');
  PANELS.LISTEN_PANELS = document.getElementsByClassName('sub-panel-listen');
  PANELS.practice = false;
+ PANELS.userForm = false;
 
  //sets indexes (data-index attribute); based on the total number of panels
  //hides all panels
@@ -410,11 +411,11 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          }, 400)
      } else if (index == ROUTER.USER_PANEL && !type) {
          console.log('USER!');
-         showLoader();
-         setTimeout(function () {
+        //  showLoader();
+        //  setTimeout(function () {
              swapPanelRouter(index);
              hideLoader();
-         }, 400)
+        //  }, 400)
      }
      else {
          console.log('default');
@@ -1131,6 +1132,7 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
  }
 
  function getUserValues() {
+     showLoader();
      let hasErrors = false;
      let errors = {
          first: false,
@@ -1162,16 +1164,20 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
          hasErrors = true;
          errors.csid = true;
      }
+     errors.unique = false;
 
      if (hasErrors) {
+
          console.log('fail', errors);
          displayErrors(errors);
          window.scrollTo(0,0);
+         hideLoader();
      } else {
+
          clearErrors(errors);
          setUserValues(first, last, email, csid, phone, goals, campus);
          console.log('placement', PLACEMENT);
-         showLoader();
+
          checkIfUserExists();
 
      }
@@ -1189,26 +1195,28 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
 
  function checkMe() {
      console.log('iframe loaded');
-     hideLoader();
-     const errors = {
-         "unique": true
-     };
-     try {
-        const iframe = document.querySelector('#empty iframe');
-        const elem = iframe.contentWindow.document.getElementsByTagName('h1')[0];
-        console.log('highlight error', errors);
-        displayErrors(errors);
-        window.scrollTo(0,0);
 
-     } catch(error){
-         console.debug('ERRRRRRRR', error);
-         console.log('success');
-         checkArea(ROUTER.NEXT_PANEL);
-         displayPanel(ROUTER.NEXT_PANEL);
+     if(PANELS.userForm) {
+        const errors = {"unique": true};
+        try {
+            const iframe = document.querySelector('#empty iframe');
+            const elem = iframe.contentWindow.document.getElementsByTagName('h1')[0];
+            console.log('highlight error', errors);
+            displayErrors(errors);
+            window.scrollTo(0,0);
+            hideLoader();
+         } catch(error){
+             console.debug('failed', error);
+             console.log('success');
+             checkArea(ROUTER.NEXT_PANEL);
+             displayPanel(ROUTER.NEXT_PANEL);
+             hideLoader();
+         }
+
      }
 
-
  }
+
 
  function displayErrors(errors) {
      clearErrors(errors);
@@ -1302,10 +1310,12 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      const ready = checkLoaded();
 
      if(ready){
+
         console.log('SAVE', ready, PLACEMENT);
         if(eval) {
-            submitCbForm();
+            saveRecord();
         } else {
+            PANELS.userForm = true;
             logUser();
         }
      } else {
@@ -1321,13 +1331,28 @@ function logUser() {
     saveField(PLACEMENT.last, 'last');
     saveField(PLACEMENT.email, 'email');
     saveField(PLACEMENT.csid, 'csid');
-    const form = document.getElementById('caspioform');
-    form.target = "frame";
-    form.submit();
 
+    // submission frame already exists
+    submitCbForm();
+}
+
+function buildSubmissionFrame(checkLoaded = false) {
+    const frameContainer = document.getElementById('empty');
+    frameContainer.innerHTML = "";
+    const frameHTML = buildFrameHTML(checkLoaded);
+    frameContainer.innerHTML = frameHTML;
+    console.log('frame built');
+    return;
 }
 
 function submitCbForm() {
+    const form = document.getElementById('caspioform');
+    form.target = "frame";
+    form.submit();
+    return;
+}
+
+function saveRecord() {
         console.log('submitting');
         saveField(PLACEMENT.first, 'first');
         saveField(PLACEMENT.last, 'last');
@@ -1360,17 +1385,13 @@ function submitCbForm() {
         saveField(PLACEMENT.elac33L, 'l_elac33');
         saveField(PLACEMENT.elac145L, 'l_elac145');
 
-
-
-        const form = document.getElementById('caspioform');
-        form.target = "frame";
-        form.submit();
+        buildSubmissionFrame();
+        submitCbForm();
 }
 
 
 
 function buildForm(id, name) {
-
         const container = document.getElementById('caspioEmbeddedForm');
         // clear container
         container.innerHTML = '';
@@ -1382,6 +1403,13 @@ function buildForm(id, name) {
         cbContainer.appendChild(cbForm);
         container.appendChild(cbContainer);
         return;
+ }
+
+ function buildFrameHTML(checkOnload = false) {
+    if(checkOnload)
+        return `<iframe onload="checkMe()" name="frame"></iframe>`;
+
+    return `<iframe name="frame"></iframe>`;
  }
 
  function checkLoaded() {
