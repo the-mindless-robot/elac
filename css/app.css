@@ -199,6 +199,7 @@ iframe {
     background: rgba(255, 255, 255, .92);
     overflow-x: hidden;
 
+
 }
 
 .loader-container {
@@ -306,13 +307,12 @@ a#clearCourse:focus {
 
 .course {
     text-align: center;
-    border: 2px solid #d0d0d0;
+    border: 2px solid #e6e6e6;
     padding: 1em;
     margin: 10px;
     background: #f0f0f0;
-    color: #d0d0d0;
+    color: #6c6c6c;
     border-radius: 3px;
-
 }
 
 .course:focus {
@@ -375,9 +375,8 @@ a#clearCourse:focus {
     border-color: var(--lvl5-bg-color);
 }
 
-.course.active,
-.flex .course:hover,
-.flex .course.course.selected-course:hover {
+.flex .course.active,
+.flex .course:not(.selected-course):hover {
     color: #fff;
     cursor: pointer;
 }
@@ -554,8 +553,8 @@ h3 {
 
 .course.selected-course {
     border: 2px solid var(--default);
-
     color: var(--default);
+    background: #e1e1e1 !important;
 }
 
 #clear {
