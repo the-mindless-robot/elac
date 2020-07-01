@@ -1188,9 +1188,6 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      // load form from cb
      buildForm(config.userForm, 'userForm');
      saveDataToCaspio();
-     // if no error
-
-
  }
 
  function checkMe() {
@@ -1315,6 +1312,10 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
         if(eval) {
             saveRecord();
         } else {
+            /* flags user form has been loaded
+             * in case iframe loads first and triggers
+             * onload logic-> checkMe() before form is ready
+             */
             PANELS.userForm = true;
             logUser();
         }
@@ -1332,14 +1333,14 @@ function logUser() {
     saveField(PLACEMENT.email, 'email');
     saveField(PLACEMENT.csid, 'csid');
 
-    // submission frame already exists
+    // submission frame already exists no need to build the frame
     submitCbForm();
 }
 
-function buildSubmissionFrame(checkLoaded = false) {
+function buildSubmissionFrame() {
     const frameContainer = document.getElementById('empty');
     frameContainer.innerHTML = "";
-    const frameHTML = buildFrameHTML(checkLoaded);
+    const frameHTML = buildFrameHTML();
     frameContainer.innerHTML = frameHTML;
     console.log('frame built');
     return;
@@ -1385,6 +1386,7 @@ function saveRecord() {
         saveField(PLACEMENT.elac33L, 'l_elac33');
         saveField(PLACEMENT.elac145L, 'l_elac145');
 
+        // erase current iframe and build new one for form submission
         buildSubmissionFrame();
         submitCbForm();
 }
@@ -1405,10 +1407,7 @@ function buildForm(id, name) {
         return;
  }
 
- function buildFrameHTML(checkOnload = false) {
-    if(checkOnload)
-        return `<iframe onload="checkMe()" name="frame"></iframe>`;
-
+ function buildFrameHTML() {
     return `<iframe name="frame"></iframe>`;
  }
 
@@ -1418,7 +1417,7 @@ function buildForm(id, name) {
             console.log('form loaded');
              return true;
         }
-        console.log('not yet');
+        console.log('waiting on form');
         return false;
  }
 
