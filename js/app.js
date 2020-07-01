@@ -892,13 +892,26 @@ loadAllData();
      console.debug('results', results);
     //highlight courses on screen (left side)
     if(results.readingCourse != "CE")
-    document.getElementById(results.readingCourse).classList.add('active');
+      flagReco(results.readingCourse);
+    // document.getElementById(results.readingCourse).classList.add('active');
 
     if(results.listeningCourse != "CE")
-    document.getElementById(results.listeningCourse).classList.add('active');
+       flagReco(results.listeningCourse);
+    // document.getElementById(results.listeningCourse).classList.add('active');
 
     //show details for each reco (right side)
     setDetails(results);
+ }
+
+ function flagReco(course_id) {
+    const courseBtn = document.getElementById(course_id);
+    courseBtn.classList.add('active');
+    courseBtn.setAttribute('aria-owns', course_id+'-details');
+    courseBtn.removeAttribute('aria-expanded');
+    courseBtn.removeAttribute('aria-controls');
+    courseBtn.removeAttribute('aria-selected');
+    courseBtn.removeAttribute('aria-label');
+    courseBtn.setAttribute('aria-label', 'Recommended course for you: ' + course_id);
  }
 
  function setDetails(results) {
@@ -1012,15 +1025,16 @@ loadAllData();
      if (reco) {
          addReco(courseContainer);
      } else {
-         addClearBtn();
          addCourse(courseContainer);
-         setTimeout(setFocus('clearCourse'), 0);
+         addClearBtn();
      }
  }
 
  function buildCourseContainer(course) {
-     let container = document.createElement('div');
+    const container = document.createElement('div');
      container.classList.add('course-details');
+     const details_id = course+'-details';
+     container.id = details_id;
      container.dataset.course = course;
      return container;
  }
@@ -1082,20 +1096,6 @@ loadAllData();
      selected.setAttribute('aria-hidden', 'false');
  }
 
- function setFocus(focusTarget = false) {
-    console.log('focusTarget', focusTarget);
-    if(focusTarget) {
-         if(document.getElementById(focusTarget) == 'object') {
-            // window.setTimeout(()=>{
-            //     document.getElementById(focusTarget).focus();
-            // }, 20)
-            setTimeout(()=>{document.getElementById(focusTarget).focus()},50);
-            console.log('set focus');
-
-         }
-     }
- }
-
  function addReco(courseNode) {
      document.getElementById('course_recos').appendChild(courseNode);
  }
@@ -1133,7 +1133,6 @@ loadAllData();
          courseBtn.setAttribute('aria-expanded', 'false');
          courseBtn.setAttribute('aria-selected', 'false');
          courseBtn.removeAttribute('aria-owns');
-         setTimeout(setFocus('ELAC15'), 0);
      }
  }
 

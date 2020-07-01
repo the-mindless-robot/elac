@@ -569,10 +569,15 @@ h3 {
     margin-top: 0;
 }
 
+.course:hover {
+    cursor: pointer;
+}
+
 .course.selected-course {
     border: 2px solid var(--default);
     color: var(--default);
-    background: #e1e1e1 !important;
+    color: rgb(86, 88, 91);
+    background: #cfcfcf !important;
 }
 
 #clear {
