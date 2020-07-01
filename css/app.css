@@ -288,6 +288,21 @@ span.phone {
     flex: 0 1 auto;
 }
 
+a#clearCourse {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a#clearCourse:focus {
+
+    border: 5px solid #fdb920;
+    /* box-shadow: 0 0 5px 2px rgba(0,0,0,.25); */
+}
+
 .course {
     text-align: center;
     border: 2px solid #d0d0d0;
@@ -317,7 +332,12 @@ span.phone {
     line-height: 1.3;
 }
 
-
+.flex[data-lvl] .course:focus {
+    border-color: #fdb930;
+    box-shadow: 1px 1px 5px #fdb930;
+    outline-color: #fdb930;
+    outline-width: 2px;
+}
 
 .flex[data-lvl="1"] .active,
 .flex[data-lvl="1"] .course:hover,
@@ -541,6 +561,8 @@ h3 {
     position: absolute;
     top: -20px;
     right: -15px;
+    height: 60px;
+    width: 60px;
 }
 
 .btn, .btn-large {

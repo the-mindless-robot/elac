@@ -945,6 +945,24 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
              reset();
          }
      });
+
+     coursesBtns[i].addEventListener('keydown', (e) => {
+        console.log('a11y', `${e.code} - ${e.target}`);
+        if(e.code == 'Space' || e.code == 'Enter') {
+            console.log('action');
+            reset();
+
+            let course_id = getCourseId(e.target);
+            console.log('course id', course_id);
+            flagSelected(course_id);
+
+            if (course_id != PLACEMENT.listeningCourse && course_id != PLACEMENT.readingCourse) {
+                showCourseDetails(course_id);
+            } else {
+                reset();
+            }
+        }
+    });
  };
 
  function showCourseDetails(course, reco = false) {
@@ -1064,11 +1082,37 @@ elacLogic.load(buildLogicRules).then(logic => logicRules = logic);
      selected.setAttribute('aria-hidden', 'true');
  }
 
+/*
+
+
+                    1111111     1111111
+                   1::::::1    1::::::1
+                  1:::::::1   1:::::::1
+                  111:::::1   111:::::1
+  aaaaaaaaaaaaa      1::::1      1::::1yyyyyyy           yyyyyyy
+  a::::::::::::a     1::::1      1::::1 y:::::y         y:::::y
+  aaaaaaaaa:::::a    1::::1      1::::1  y:::::y       y:::::y
+           a::::a    1::::l      1::::l   y:::::y     y:::::y
+    aaaaaaa:::::a    1::::l      1::::l    y:::::y   y:::::y
+  aa::::::::::::a    1::::l      1::::l     y:::::y y:::::y
+ a::::aaaa::::::a    1::::l      1::::l      y:::::y:::::y
+a::::a    a:::::a    1::::l      1::::l       y:::::::::y
+a::::a    a:::::a 111::::::111111::::::111     y:::::::y
+a:::::aaaa::::::a 1::::::::::11::::::::::1      y:::::y
+ a::::::::::aa:::a1::::::::::11::::::::::1     y:::::y
+  aaaaaaaaaa  aaaa111111111111111111111111    y:::::y
+                                             y:::::y
+                                            y:::::y
+                                           y:::::y
+                                          y:::::y
+                                         yyyyyyy
+
+*/
+
+// catch [enter] and [key] events for focused "buttons"
+
 
  /*
-
-
-
 
 
 
