@@ -1342,7 +1342,7 @@ loadAllData();
  // in reality this should be done with a backend script
 
 
- function saveDataToCaspio(eval = false) {
+ function saveDataToCaspio(isEval = false) {
      // saveField(value, nameOfFieldInCaspio)
      // user details
 
@@ -1351,7 +1351,7 @@ loadAllData();
      if(ready){
 
         console.log('SAVE', ready, PLACEMENT);
-        if(eval) {
+        if(isEval) {
             saveRecord();
         } else {
             /* flags user form has been loaded
@@ -1363,7 +1363,7 @@ loadAllData();
         }
      } else {
         window.setTimeout(()=>{
-            saveDataToCaspio(eval);
+            saveDataToCaspio(isEval);
         }, 100);
      }
  }
