@@ -1465,7 +1465,7 @@ function buildForm(id, name) {
 
  function saveField(value, caspioFieldName) {
 
-    fieldName = 'InsertRecord'+ caspioFieldName;
+    const fieldName = 'InsertRecord'+ caspioFieldName;
      console.log(`${fieldName} : ${value}`);
     document.getElementById(fieldName).value = value;
  }
